@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-const HelloWorld = () => { 
-  return(
-    <h1>Hello World</h1>
-  );
-};
+import {Counter} from './components/Counter';
 
 ReactDOM.render(
-  <HelloWorld />, 
+  <Counter />, 
   document.getElementById('root')
 );
