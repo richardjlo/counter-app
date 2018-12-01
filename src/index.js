@@ -6,18 +6,22 @@ class CounterApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 3,
+      count: 0,
     }
     this.handleIncrementButton = this.handleIncrementButton.bind(this);
     this.handleDecrementButton = this.handleDecrementButton.bind(this);
   };
 
   handleIncrementButton() {
-    alert('Increment!');
+    this.setState({
+      count: this.state.count + 1,
+    });
   }
 
   handleDecrementButton() {
-    alert('Decrement');
+    this.setState({
+      count: this.state.count - 1,
+    });
   }
 
   render() {
