@@ -1,15 +1,15 @@
 import React from 'react';
 
 export const Counter = (props) => { 
-  const { count } = props;
+  const { count, onIncrement, onDecrement } = props;
   return(
     <React.Fragment>
       <p>
         Clicked: {count} times
         {' '}
-        <button>+</button>
+        <button onClick={onIncrement}>+</button>
         {' '}
-        <button>-</button>  
+        <button onClick={onDecrement}>-</button>  
       </p>
     </React.Fragment>
   );
