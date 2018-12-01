@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import {Counter} from './components/Counter';
 
 ReactDOM.render(
-  <Counter />, 
+  <Counter 
+    count={5}
+  />, 
   document.getElementById('root')
 );

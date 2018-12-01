@@ -1,10 +1,11 @@
 import React from 'react';
 
-export const Counter = () => { 
+export const Counter = (props) => { 
+  const { count } = props;
   return(
     <React.Fragment>
       <p>
-        Clicked: 0 times
+        Clicked: {count} times
         {' '}
         <button>+</button>
         {' '}
