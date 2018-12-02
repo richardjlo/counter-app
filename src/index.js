@@ -8,14 +8,10 @@ import { createStore } from 'redux'
 class CounterApp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      count: 0,
-    }
   };
 
   handleIncrementButton() {
     store.dispatch(increment());
-    // alert(store.getState().count);
   }  
   handleDecrementButton() {
     store.dispatch(decrement());
