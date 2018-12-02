@@ -6,10 +6,6 @@ import { increment, decrement } from './actions/actions';
 import { createStore } from 'redux'
 
 class CounterApp extends React.Component {
-  constructor(props) {
-    super(props);
-  };
-
   handleIncrementButton() {
     store.dispatch(increment());
   }  
