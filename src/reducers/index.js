@@ -2,16 +2,21 @@
  * Counter Reducer
  */ 
 
-export const counterReducer = (state = { count: 0 }, action) => {
-  if(action.type === 'INCREMENT') {
-    return({
-      count: state.count + 1,
-    });
-  } else if(action.type === 'DECREMENT') {
-    return({
-      count: state.count -1,
-    });
-  } else {
-    return state;
+const initialState = {
+  count: 0,
+}
+
+export const counterReducer = (state = initialState, action) => {
+  switch(action.type) {
+    case 'INCREMENT':
+      return({
+        count: state.count + 1,
+      });
+    case 'DECREMENT':
+      return({
+        count: state.count -1,
+      });
+    default:
+      return state;
   }
 };
