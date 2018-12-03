@@ -4,11 +4,11 @@ import { increment, decrement } from '../actions/actions';
 import { connect } from "react-redux";
 
 const CounterApp = (props) => {
-  console.log(props);
   return(
     <Counter 
       count={props.count}
-      // count={store.getState().count}
+      onIncrement={props.handleIncrement()}
+      OnDecrement={props.handleDecrement()}
       // onIncrement={() => {store.dispatch(increment())}}
       // onDecrement={() => {store.dispatch(decrement())}}
     />      
@@ -21,4 +21,11 @@ function mapStateToProps(state) {
   });
 }
 
-export default connect(mapStateToProps)(CounterApp);
+function mapDispatchToProps() {
+  return({
+    handleIncrement: increment,
+    handleDecrement: decrement,
+  });
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CounterApp);
