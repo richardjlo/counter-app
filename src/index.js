@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import { Counter } from './components/Counter';
 import { counterReducer } from './reducers/index';
 import { increment, decrement } from './actions/actions';
-import { createStore } from 'redux'
+import { createStore } from 'redux';
+import { Provider } from "react-redux";
+import { connect } from "react-redux";
 
 const CounterApp = () => {
   return(
@@ -19,7 +21,9 @@ const store = createStore(counterReducer);
 
 const render = () => {
   ReactDOM.render(
-    <CounterApp />, 
+    <Provider store={store}>
+      <CounterApp />
+    </Provider>, 
     document.getElementById('root')
   );
 };
