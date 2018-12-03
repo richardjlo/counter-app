@@ -4,7 +4,6 @@ import { increment, decrement } from '../actions/actions';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-
 const CounterApp = (props) => {
   const { count, handleIncrement, handleDecrement } = props;
   return(
