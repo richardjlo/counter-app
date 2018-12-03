@@ -2,15 +2,16 @@ import React from 'react';
 import { Counter } from '../components/Counter';
 import { increment, decrement } from '../actions/actions';
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
 
 const CounterApp = (props) => {
+  const { count, handleIncrement, handleDecrement } = props;
   return(
     <Counter 
-      count={props.count}
-      onIncrement={props.handleIncrement()}
-      OnDecrement={props.handleDecrement()}
-      // onIncrement={() => {store.dispatch(increment())}}
-      // onDecrement={() => {store.dispatch(decrement())}}
+      count={count}
+      onIncrement={() => {handleIncrement()}}
+      onDecrement={() => {handleDecrement()}}
     />      
   );
 };
@@ -21,11 +22,15 @@ function mapStateToProps(state) {
   });
 }
 
-function mapDispatchToProps() {
-  return({
-    handleIncrement: increment,
-    handleDecrement: decrement,
-  });
+function mapDispatchToProps(dispatch) {
+  return (
+    bindActionCreators(
+      {
+        handleIncrement: increment,
+        handleDecrement: decrement,
+      }, 
+    dispatch)
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CounterApp);
