@@ -5,16 +5,14 @@ import {counterReducer} from './reducers/index';
 import { increment, decrement } from './actions/actions';
 import { createStore } from 'redux'
 
-class CounterApp extends React.Component {
-  render() {
-    return(
-      <Counter 
-        count={store.getState().count}
-        onIncrement={() => {store.dispatch(increment())}}
-        onDecrement={() => {store.dispatch(decrement())}}
-      />      
-    );
-  }
+const CounterApp = () => {
+  return(
+    <Counter 
+      count={store.getState().count}
+      onIncrement={() => {store.dispatch(increment())}}
+      onDecrement={() => {store.dispatch(decrement())}}
+    />      
+  );
 };
 
 const store = createStore(counterReducer);
