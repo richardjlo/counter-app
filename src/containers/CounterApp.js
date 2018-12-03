@@ -3,10 +3,11 @@ import { Counter } from '../components/Counter';
 import { increment, decrement } from '../actions/actions';
 import { connect } from "react-redux";
 
-const CounterApp = () => {
+const CounterApp = (props) => {
+  console.log(props);
   return(
     <Counter 
-      count={111}
+      count={props.count}
       // count={store.getState().count}
       // onIncrement={() => {store.dispatch(increment())}}
       // onDecrement={() => {store.dispatch(decrement())}}
@@ -15,7 +16,9 @@ const CounterApp = () => {
 };
 
 function mapStateToProps(state) {
-  return state.count;
+  return ({
+    count: state.count,
+  });
 }
 
 export default connect(mapStateToProps)(CounterApp);
