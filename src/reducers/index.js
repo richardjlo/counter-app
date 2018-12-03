@@ -1,5 +1,5 @@
 /*
- * Counter Reducer
+ * Counter Reducer. Handles incrementing and decrementing counter.
  */ 
 
 const initialState = {
