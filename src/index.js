@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Counter} from './components/Counter';
-import {counterReducer} from './reducers/index';
+import { Counter } from './components/Counter';
+import { counterReducer } from './reducers/index';
 import { increment, decrement } from './actions/actions';
-import { createStore } from 'redux';
+import { createStore } from 'redux'
 
 const CounterApp = () => {
   return(
