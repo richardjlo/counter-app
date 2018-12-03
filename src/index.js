@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { counterReducer } from './reducers/index';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { CounterApp } from './containers/CounterApp';
+import CounterApp from './containers/CounterApp';
 
 const store = createStore(counterReducer);
 
