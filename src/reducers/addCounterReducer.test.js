@@ -24,7 +24,9 @@ describe('addCounterReducer', () => {
     expect(addCounterReducer( [0, 0], addCounter()) ).toEqual([0, 0, 0]);
   })
 
+  const prevState1 = [0];
+  Object.freeze(prevState1);
   it('should increment counter @ 0 from 0 to 1', () => {
-    expect(addCounterReducer( [0], increment(0))  ).toEqual([1]);
+    expect(addCounterReducer( prevState1, increment(0))  ).toEqual([1]);
   })  
 });
