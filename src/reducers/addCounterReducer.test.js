@@ -10,8 +10,10 @@ describe('addCounterReducer', () => {
     expect(addCounterReducer(undefined, {})).toEqual([]);
   })  
 
+  const prevState = [];
+  Object.freeze(prevState);
   it('should add counter from [] to [0]', () => {
-    expect(addCounterReducer( [], addCounter()) ).toEqual([0]);
+    expect(addCounterReducer( prevState, addCounter()) ).toEqual([0]);
   })
 
   it('should add counter from 1 counter ([0]) to 2 counters ([0, 0])', () => {
