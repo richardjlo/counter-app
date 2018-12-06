@@ -7,14 +7,14 @@ import { AddCounterButton } from './AddCounterButton';
  */
 
 export const CounterAppMultiple = (props) => {
-  const { countersList, handleAddCounterButton, handleIncrement } = props;
+  const { countersList, handleAddCounterButton, handleIncrement, handleDecrement } = props;
   const counters = countersList.map( (obj, index) => {
     return (
       <Counter
         key={index}
         count = {obj}
         onIncrement={() => {handleIncrement(index)}}
-        // onDecrement={() => {handleDecrement()}}        
+        onDecrement={() => {handleDecrement(index)}}
       />
     );
   });
