@@ -29,4 +29,10 @@ describe('addCounterReducer', () => {
   it('should increment counter @ 0 from 0 to 1', () => {
     expect(addCounterReducer( prevState1, increment(0))  ).toEqual([1]);
   })  
+
+  const prevState2 = [2];
+  Object.freeze(prevState2);
+  it('should decrementt counter @ 0 from 0 to 1', () => {
+    expect(addCounterReducer( prevState2, decrement(0))  ).toEqual([1]);
+  })    
 });
