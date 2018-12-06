@@ -22,6 +22,7 @@ export const CounterAppMultiple = (props) => {
   return(
     <div>
       {counters}
+      <hr />
       <AddCounterButton 
         onAddCounter={() => {handleAddCounterButton()}}
       />
