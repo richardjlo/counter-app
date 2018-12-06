@@ -11,6 +11,10 @@ describe('addCounterReducer', () => {
   })  
 
   it('should add counter from [] to [0]', () => {
-    expect(addCounterReducer( [], addCounter())  ).toEqual([0]);
+    expect(addCounterReducer( [], addCounter()) ).toEqual([0]);
+  })
+
+  it('should add counter from 1 counter ([0]) to 2 counters ([0, 0])', () => {
+    expect(addCounterReducer( [0], addCounter()) ).toEqual([0, 0]);
   })
 });
