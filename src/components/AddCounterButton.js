@@ -1,8 +1,11 @@
 import React from 'react';
 
-export const AddCounterButton = () => {
+export const AddCounterButton = (props) => {
+  const {onAddCounter} = props;
   return(
-    <button>
+    <button
+      onClick={onAddCounter}
+    >
       Add Counter
     </button>
   );
