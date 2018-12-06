@@ -14,3 +14,10 @@ export const increment = (i) => {
     type: 'INCREMENT',
   });  
 };
+
+export const decrement = (i) => {
+  return({
+    index: i,
+    type: 'DECREMENT',
+  });  
+};
