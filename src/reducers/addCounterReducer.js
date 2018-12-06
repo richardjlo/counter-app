@@ -10,6 +10,11 @@ export const addCounterReducer = (state = initialState, action) => {
       let value = newState2[action.index];
       newState2[action.index] = value + 1;
       return(newState2);
+    case 'DECREMENT':
+      let newState3 = state.slice();
+      let value1 = newState3[action.index];
+      newState3[action.index] = value1 - 1;
+      return newState3;
     default:
       return state;
   }
