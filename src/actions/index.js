@@ -7,3 +7,10 @@ export const addCounter = () => {
     type: 'ADD_COUNTER',
   });  
 };
+
+export const increment = (i) => {
+  return({
+    index: i,
+    type: 'INCREMENT',
+  });  
+};
