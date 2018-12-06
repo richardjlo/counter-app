@@ -7,8 +7,7 @@ import { AddCounterButton } from './AddCounterButton';
  */
 
 export const CounterAppMultiple = (props) => {
-  console.log(props);
-  const { countersList } = props;
+  const { countersList, handleAddCounterButton } = props;
   const counters = countersList.map( (obj, index) => {
     console.log(obj);
     return (
@@ -24,7 +23,9 @@ export const CounterAppMultiple = (props) => {
   return(
     <div>
       {counters}
-      <AddCounterButton />
+      <AddCounterButton 
+        onAddCounter={() => {handleAddCounterButton()}}
+      />
     </div>    
   );
 };
