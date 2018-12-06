@@ -19,7 +19,7 @@ function mapDispatchToProps(dispatch) {
   return (
     bindActionCreators(
       {
-        addCounter: addCounter,
+        handleAddCounterButton: addCounter,
       }, 
     dispatch)
   );
