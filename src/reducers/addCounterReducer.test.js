@@ -1,5 +1,5 @@
 import {addCounterReducer} from './addCounterReducer';
-import { addCounter } from '../actions/index';
+import { addCounter, increment } from '../actions/index';
 
 describe('addCounterReducer', () => {
   it('should return true if addCounterReducer exists', () => {
@@ -23,4 +23,8 @@ describe('addCounterReducer', () => {
   it('should add counter from 2 counters ([0, 0]) to 3 counters ([0, 0, 0])', () => {
     expect(addCounterReducer( [0, 0], addCounter()) ).toEqual([0, 0, 0]);
   })
+
+  it('should increment counter @ 0 from 0 to 1', () => {
+    expect(addCounterReducer( [0], increment(0))  ).toEqual([1]);
+  })  
 });
