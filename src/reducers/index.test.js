@@ -1,4 +1,4 @@
-import {addCounterReducer} from './addCounterReducer';
+import {addCounterReducer} from './index';
 import { addCounter, increment, decrement } from '../actions/index';
 
 describe('addCounterReducer', () => {

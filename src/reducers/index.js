@@ -1,6 +1,6 @@
 const initialState = [];
 
-export const addCounterReducer = (state = initialState, action) => {
+export const counterReducer = (state = initialState, action) => {
   switch(action.type) { 
     case 'ADD_COUNTER':
       const newState = state.concat(0);
