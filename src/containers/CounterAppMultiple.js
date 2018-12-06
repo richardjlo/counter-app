@@ -1,5 +1,5 @@
 import { CounterAppMultiple } from '../components/CounterAppMultiple';
-import { addCounter, increment } from '../actions/index';
+import { addCounter, increment, decrement } from '../actions/index';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -21,6 +21,7 @@ function mapDispatchToProps(dispatch) {
       {
         handleAddCounterButton: addCounter,
         handleIncrement: increment,
+        handleDecrement: decrement,
       }, 
     dispatch)
   );
