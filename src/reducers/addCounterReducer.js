@@ -1,5 +1,9 @@
 const defaultState = [];
 
 export const addCounterReducer = (state = defaultState, action) => {
-  return defaultState;
+  if(action.type === 'ADD_COUNTER') {
+    return ([0]);
+  } else {
+    return defaultState;
+  }  
 };
