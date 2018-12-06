@@ -1,6 +1,5 @@
 import React from 'react';
 import { Counter } from './Counter';
-import { AddCounterButton } from './AddCounterButton';
 
 /*
  * Presentational component that adds one or more counters to the DOM
@@ -23,9 +22,11 @@ export const CounterApp = (props) => {
     <div>
       {counters}
       <hr />
-      <AddCounterButton 
-        onAddCounter={() => {handleAddCounterButton()}}
-      />
+      <button
+        onClick={() => {handleAddCounterButton()}}
+      >
+        Add Counter
+      </button>
     </div>    
   );
 };
