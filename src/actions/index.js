@@ -1,5 +1,5 @@
 /*
- * Action Creators - 'ADD_COUNTER'
+ * Action Creators - addCounter, increment, decrement
  */
 
 export const addCounter = () => {
