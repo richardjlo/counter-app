@@ -9,7 +9,6 @@ import { AddCounterButton } from './AddCounterButton';
 export const CounterAppMultiple = (props) => {
   const { countersList, handleAddCounterButton } = props;
   const counters = countersList.map( (obj, index) => {
-    console.log(obj);
     return (
       <Counter
         key={index}
