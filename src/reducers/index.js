@@ -11,10 +11,11 @@ export const counterReducer = (state = initialState, action) => {
         ...state.slice(action.index + 1),   // Part of array after index
       ]
     case 'DECREMENT':
-      let newState3 = state.slice();
-      let value1 = newState3[action.index];
-      newState3[action.index] = value1 - 1;
-      return newState3;
+    return [
+      ...state.slice(0, action.index),    // Part of array before index
+      state[action.index] - 1,            // Decremented value at index
+      ...state.slice(action.index + 1),   // Part of array after index
+    ]    
     case 'DELETE_COUNTER':
       return [
         ...state.slice(0, action.index),  // Get part of array before index
