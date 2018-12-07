@@ -5,10 +5,13 @@ export const counterReducer = (state = initialState, action) => {
     case 'ADD_COUNTER':
       return [...state, 0];     // same as `return state.concat(0);`
     case 'INCREMENT': 
-      let newState2 = state.slice();
-      let value = newState2[action.index];
-      newState2[action.index] = value + 1;
-      return(newState2);
+      let before = state.slice(0, action.index);
+      let value = state[action.index] + 1;
+      let after = state.slice(action.index + 1);
+
+      return before
+        .concat(value)
+        .concat(after);
     case 'DECREMENT':
       let newState3 = state.slice();
       let value1 = newState3[action.index];
