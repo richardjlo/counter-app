@@ -13,6 +13,8 @@ export const Counter = (props) => {
         <button onClick={onIncrement}>+</button>
         {' '}
         <button onClick={onDecrement}>-</button>  
+        {' '}
+        <button>Delete</button>  
       </p>
     </React.Fragment>
   );
