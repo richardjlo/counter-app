@@ -40,7 +40,9 @@ describe('addCounterReducer', () => {
     expect(counterReducer( prevState2, decrement(0)) ).toEqual([1]);
   })    
 
+  const singleCounter = [0];
+  Object.freeze(singleCounter);
   it('should delete counter', () => {
-    expect(counterReducer( [0], deleteCounter(0)) ).toEqual([]);
+    expect(counterReducer( singleCounter, deleteCounter(0)) ).toEqual([]);
   })
 });
