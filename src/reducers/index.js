@@ -15,9 +15,10 @@ export const counterReducer = (state = initialState, action) => {
       newState3[action.index] = value1 - 1;
       return newState3;
     case 'DELETE_COUNTER':
-      const front = state.slice(0, action.index);
-      const end = state.slice(action.index + 1);
-      return front.concat(end);
+      return [
+        ...state.slice(0, action.index), 
+        ...state.slice(action.index + 1)
+      ];
     default:
       return state;
   }
