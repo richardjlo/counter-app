@@ -1,5 +1,5 @@
 import {counterReducer} from './index'
-import { addCounter, increment, decrement } from '../actions/index';
+import { addCounter, increment, decrement , deleteCounter} from '../actions/index';
 
 describe('addCounterReducer', () => {
   it('should return true if addCounterReducer exists', () => {
@@ -39,4 +39,8 @@ describe('addCounterReducer', () => {
   it('should decrement counter @ 0 from 2 to 1', () => {
     expect(counterReducer( prevState2, decrement(0)) ).toEqual([1]);
   })    
+
+  it('should delete counter', () => {
+    expect(counterReducer( [0], deleteCounter(0)) ).toEqual([]);
+  })
 });
