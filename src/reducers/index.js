@@ -15,6 +15,10 @@ export const counterReducer = (state = initialState, action) => {
       let value1 = newState3[action.index];
       newState3[action.index] = value1 - 1;
       return newState3;
+    case 'DELETE_COUNTER':
+      let newState4 = state.slice();
+      newState4.splice(action.index, 1);
+      return newState4;
     default:
       return state;
   }
