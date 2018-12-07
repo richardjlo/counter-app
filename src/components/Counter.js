@@ -4,7 +4,7 @@ import React from 'react';
  * Presentational component for adding a single counter to the DOM
  */
 export const Counter = (props) => { 
-  const { count, onIncrement, onDecrement } = props;
+  const { count, onIncrement, onDecrement, onDelete } = props;
   return(
     <React.Fragment>
       <p>
@@ -14,7 +14,7 @@ export const Counter = (props) => {
         {' '}
         <button onClick={onDecrement}>-</button>  
         {' '}
-        <button>Delete</button>  
+        <button onClick={onDelete}>Delete</button>  
       </p>
     </React.Fragment>
   );
