@@ -10,6 +10,7 @@ export const addCounter = () => {
 
 export const deleteCounter = (i) => {
   return({
+    index: i,
     type: 'DELETE_COUNTER',
   });
 };
