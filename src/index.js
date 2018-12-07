@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import { counterReducer } from './reducers';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import CounterApp from './containers/CounterApp';
+import CounterAppContainer from './containers/CounterAppContainer';
 
 const store = createStore(counterReducer);
 
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <CounterApp />
+      <CounterAppContainer />
     </Provider>,
     document.getElementById('root')
   );
