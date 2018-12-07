@@ -8,6 +8,12 @@ export const addCounter = () => {
   });  
 };
 
+export const deleteCounter = (i) => {
+  return({
+    type: 'DELETE_COUNTER',
+  });
+};
+
 export const increment = (i) => {
   return({
     index: i,
