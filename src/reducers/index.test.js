@@ -45,4 +45,10 @@ describe('addCounterReducer', () => {
   it('should delete counter', () => {
     expect(counterReducer( singleCounter, deleteCounter(0)) ).toEqual([]);
   })
+
+  const threeCounters = [0, 1, 2];
+  Object.freeze(threeCounters);
+  it('should delete 2nd counter', () => {
+    expect(counterReducer( threeCounters, deleteCounter(1)) ).toEqual([0, 2]);
+  })
 });
