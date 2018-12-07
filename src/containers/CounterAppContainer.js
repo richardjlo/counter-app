@@ -14,7 +14,7 @@ import { bindActionCreators } from "redux";
  * as props to CounterApp component.
  */
 
- function mapStateToProps(state) {
+function mapStateToProps(state) {
   return ({
     countersList: state,
   });
@@ -33,4 +33,4 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CounterApp);
+export const CounterAppContainer = connect(mapStateToProps, mapDispatchToProps)(CounterApp);
