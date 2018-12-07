@@ -3,7 +3,7 @@ const initialState = [];
 export const counterReducer = (state = initialState, action) => {
   switch(action.type) { 
     case 'ADD_COUNTER':
-      return state.concat(0);   // Same as `return [...state, 0];`
+      return [...state, 0];     // same as `return state.concat(0);`
     case 'INCREMENT': 
       let newState2 = state.slice();
       let value = newState2[action.index];
