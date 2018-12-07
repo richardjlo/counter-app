@@ -17,8 +17,8 @@ export const counterReducer = (state = initialState, action) => {
       return newState3;
     case 'DELETE_COUNTER':
       return [
-        ...state.slice(0, action.index), 
-        ...state.slice(action.index + 1)
+        ...state.slice(0, action.index),  // Get part of array before index
+        ...state.slice(action.index + 1)    // Get part of array afert index
       ];
     default:
       return state;
