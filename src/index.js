@@ -6,7 +6,10 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import {CounterAppContainer} from './containers/CounterAppContainer';
 
-const store = createStore(counterReducer);
+const store = createStore(
+  counterReducer,
+  applyMiddleware(thunk)
+);
 
 const render = () => {
   ReactDOM.render(
