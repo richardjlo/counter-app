@@ -3,7 +3,8 @@ import {
   addCounter, 
   increment, 
   decrement, 
-  deleteCounter 
+  deleteCounter, 
+  asyncIncrement,
 } from '../actions/index';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -28,6 +29,7 @@ function mapDispatchToProps(dispatch) {
         handleIncrement: increment,
         handleDecrement: decrement,
         handleDeleteCounterButton: deleteCounter,
+        handleAsyncIncrement: asyncIncrement,
       }, 
     dispatch)
   );
