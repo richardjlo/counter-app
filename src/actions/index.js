@@ -22,6 +22,15 @@ export const increment = (i) => {
   });  
 };
 
+export const asyncIncrement = (i) => {
+  return dispatch => {
+    setTimeout(() => {
+      // Yay! Can invoke sync or async actions with `dispatch`
+      dispatch(increment(i));
+    }, 1000);
+  };
+};
+
 export const decrement = (i) => {
   return({
     index: i,
