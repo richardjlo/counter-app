@@ -15,6 +15,8 @@ export const Counter = (props) => {
         <button onClick={onDecrement}>-</button>  
         {' '}
         <button onClick={onDelete}>Delete</button>  
+        {' '}
+        <button onClick={onIncrement}>Async Increment</button>  
       </p>
     </React.Fragment>
   );
