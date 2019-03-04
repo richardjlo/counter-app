@@ -6,7 +6,14 @@ import { Counter } from './Counter';
  */
 
 export const CounterApp = (props) => {
-  const { countersList, handleAddCounterButton, handleIncrement, handleDecrement, handleDeleteCounterButton } = props;
+  const { 
+    countersList, 
+    handleAddCounterButton, 
+    handleIncrement, 
+    handleDecrement, 
+    handleDeleteCounterButton,
+    handleAsyncIncrement,
+  } = props;
   const counters = countersList.map( (value, index) => {
     return (
       <Counter
@@ -15,6 +22,7 @@ export const CounterApp = (props) => {
         onIncrement={() => {handleIncrement(index)}}
         onDecrement={() => {handleDecrement(index)}}
         onDelete={() => {handleDeleteCounterButton(index)}}
+        onAsyncIncrement={() => {handleAsyncIncrement(index)}}
       />
     );
   });
