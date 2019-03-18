@@ -1,10 +1,11 @@
 import { CounterApp } from '../components/CounterApp';
 import { 
-  addCounter, 
-  increment, 
-  decrement, 
-  deleteCounter, 
-  asyncIncrement,
+  createCounter,
+  // addCounter, 
+  // increment, 
+  // decrement, 
+  // deleteCounter, 
+  // asyncIncrement,
 } from '../actions/index';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -25,11 +26,11 @@ function mapDispatchToProps(dispatch) {
   return (
     bindActionCreators(
       {
-        handleAddCounterButton: addCounter,
-        handleIncrement: increment,
-        handleDecrement: decrement,
-        handleDeleteCounterButton: deleteCounter,
-        handleAsyncIncrement: asyncIncrement,
+        handleAddCounterButton: createCounter,
+        // handleIncrement: increment,
+        // handleDecrement: decrement,
+        // handleDeleteCounterButton: deleteCounter,
+        // handleAsyncIncrement: asyncIncrement,
       }, 
     dispatch)
   );
