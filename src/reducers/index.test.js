@@ -1,54 +1,121 @@
 import {counterReducer} from './index'
-import { addCounter, increment, decrement , deleteCounter} from '../actions/index';
+import { 
+  createCounterRequest, 
+  createCounterSuccess,
+} from '../actions/index';
 
-describe('addCounterReducer', () => {
-  it('should return true if addCounterReducer exists', () => {
+describe('Counter Reducer', () => {
+  const counter1_id = 'b9mY8KQy2p4FIb7MJ5LP';
+  const counter2_id = 'uB3LUWoA8tsdxDzTq0Py';
+  const counter3_id = 'uB3LUWoA8tsdxDzTq3xm';
+  
+  const initialState = {
+    isFetching: false,
+    counters: {
+      [counter1_id]: {
+        value: 1,
+      },
+      [counter2_id]: {
+        value: 2,
+      },
+      [counter3_id]: {
+        value: 3,
+      }
+    }
+  };  
+
+  it('should return true if Counter Reducer exists', () => {
     expect(counterReducer).toBeDefined();
-  }) 
+  })
 
-  it('should provide initial state to be counters = []', () => {
-    expect(counterReducer(undefined, {})).toEqual([]);
-  })  
+  it('should provide initial state.', () => {
+    expect(counterReducer(undefined, {})).toEqual(initialState);
+  })
 
   it('should return state if action is unknown', () => {
-    expect(counterReducer([], {})).toEqual([]);
-  })  
-
-  const prevState = [];
-  Object.freeze(prevState);
-  it('should add counter from [] to [0]', () => {
-    expect(counterReducer( prevState, addCounter()) ).toEqual([0]);
+    expect(counterReducer(initialState, {})).toEqual(initialState);
   })
 
-  it('should add counter from 1 counter ([0]) to 2 counters ([0, 0])', () => {
-    expect(counterReducer( [0], addCounter()) ).toEqual([0, 0]);
-  })
+});
 
-  it('should add counter from 2 counters ([0, 0]) to 3 counters ([0, 0, 0])', () => {
-    expect(counterReducer( [0, 0], addCounter()) ).toEqual([0, 0, 0]);
-  })
+describe('createCounterRequest action creator', () => {
+  const initialState = {
+    isFetching: false,
+    counters: {},
+  };
+  
+  Object.freeze(initialState);
 
-  const prevState1 = [0];
-  Object.freeze(prevState1);
-  it('should increment counter @ 0 from 0 to 1', () => {
-    expect(counterReducer( prevState1, increment(0)) ).toEqual([1]);
-  })  
+  const fetchingNewCounter = {
+    isFetching: true,
+    counters: {},
+  }
 
-  const prevState2 = [2];
-  Object.freeze(prevState2);
-  it('should decrement counter @ 0 from 2 to 1', () => {
-    expect(counterReducer( prevState2, decrement(0)) ).toEqual([1]);
-  })    
+  it('should turn on isFetching flag', () => {
+    expect( counterReducer(initialState, createCounterRequest()) ).toEqual(fetchingNewCounter);
+  });  
+});
 
-  const singleCounter = [0];
-  Object.freeze(singleCounter);
-  it('should delete counter', () => {
-    expect(counterReducer( singleCounter, deleteCounter(0)) ).toEqual([]);
-  })
+describe('createCounterSuccess action creator', () => {
+  const initialState = {
+    isFetching: false,
+    counters: {},
+  };
+  
+  Object.freeze(initialState);
+  const counter1_id = 'b9mY8KQy2p4FIb7MJ5LP';
+  const counter2_id = 'uB3LUWoA8tsdxDzTq0Py';
+  const counter3_id = 'uB3LUWoA8tsdxDzTq3xm';
 
-  const threeCounters = [0, 1, 2];
-  Object.freeze(threeCounters);
-  it('should delete 2nd counter', () => {
-    expect(counterReducer( threeCounters, deleteCounter(1)) ).toEqual([0, 2]);
-  })
+  const oneCounter = {
+    isFetching: false,
+    counters: {
+      [counter1_id]: {
+        value: 0,
+      }
+    }        
+  };
+
+  it('should add counter to empty counters list.', () => {
+    expect(counterReducer( initialState, createCounterSuccess(counter1_id)) )
+      .toEqual(oneCounter);
+  });
+
+  Object.freeze(oneCounter);
+
+  const twoCounters = {
+    isFetching: false, 
+    counters: {
+      [counter1_id]: {
+        value: 0,
+      },
+      [counter2_id]: {
+        value: 0,
+      }
+    }     
+  };
+  
+  it('should add counter from 1 counter to 2 counters', () => {
+    expect(counterReducer( oneCounter, createCounterSuccess(counter2_id)) ).toEqual(twoCounters);
+  });
+
+  Object.freeze(twoCounters);
+  const threeCounters = {
+    isFetching: false, 
+    counters: {
+      [counter1_id]: {
+        value: 0,
+      },
+      [counter2_id]: {
+        value: 0,
+      },
+      [counter3_id]: {
+        value: 0,
+      }
+    }
+  };
+
+  it('should add counter from 2 counters to 3 counters', () => {
+    expect(counterReducer( twoCounters, createCounterSuccess(counter3_id)) ).toEqual(threeCounters);
+  });    
 });
