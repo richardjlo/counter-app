@@ -8,7 +8,7 @@ import { Counter } from './Counter';
 export const CounterApp = (props) => {
   const { 
     countersList, 
-    // handleAddCounterButton, 
+    handleAddCounterButton, 
     // handleIncrement, 
     // handleDecrement, 
     // handleDeleteCounterButton,
@@ -43,7 +43,7 @@ export const CounterApp = (props) => {
       {counters}
       <hr />
       <button
-        // onClick={() => {handleAddCounterButton()}}
+        onClick={() => {handleAddCounterButton()}}
       >
         Add Counter
       </button>
