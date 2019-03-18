@@ -20,6 +20,7 @@ const countersRef = db.collection("counters");
 export const CREATE_COUNTER = 'CREATE_COUNTER';
 
 export const createCounterRequest = () => {
+  console.log("Sending create counter request...")
   return({
     type: CREATE_COUNTER,
   });
@@ -44,7 +45,7 @@ export const createCounter = () => {
       created: firebase.firestore.Timestamp.now().seconds,
     })
     .then(function(docRef) {
-      console.log("Document written with ID: ", docRef.id);
+      console.log("Counter created! Document written with ID: ", docRef.id);
       // TODO: Send document id to addCounter action creator
       dispatch( createCounterSuccess(docRef.id) );
     })
