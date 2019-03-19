@@ -261,20 +261,20 @@ describe('deleteCounterSuccess action creator', () => {
   });
 });
 
-// describe('incrementRequest action creator', () => {
-//   const initialState = {
-//     isFetching: false,
-//     counters: {},
-//   };
+describe('incrementRequest action creator', () => {
+  const initialState = {
+    isFetching: false,
+    counters: {},
+  };
   
-//   Object.freeze(initialState);
+  Object.freeze(initialState);
 
-//   const fetchingData = {
-//     isFetching: true,
-//     counters: {},
-//   };
+  const fetchingData = {
+    isFetching: true,
+    counters: {},
+  };
 
-//   it('should turn on isFetching flag', () => {
-//     expect( counterReducer(initialState, incrementRequest()) ).toEqual(fetchingData);
-//   });  
-// })
+  it('should turn on isFetching flag', () => {
+    expect( counterReducer(initialState, incrementRequest()) ).toEqual(fetchingData);
+  });  
+})
