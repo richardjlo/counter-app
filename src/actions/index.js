@@ -122,7 +122,7 @@ export const deleteCounterSuccess = (response) => {
     status:'success',
     response: response,
   });
-}
+};
 
 // export const addCounter = () => {
 //   return({
