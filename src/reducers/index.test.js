@@ -3,7 +3,8 @@ import {
   createCounterRequest, 
   createCounterSuccess,
   fetchCountersRequest,
-  fetchCountersSuccess
+  fetchCountersSuccess, 
+  deleteCounterRequest
 } from '../actions/index';
 
 describe('Counter Reducer', () => {
@@ -174,3 +175,21 @@ describe('fetchCountersSuccess action creator', () => {
     expect( counterReducer(initialState, fetchCountersSuccess(threeCounters.counters)) ).toEqual(threeCounters);
   });
 });
+
+describe('deleteCounterRequest action creator', () => {
+  const initialState = {
+    isFetching: false,
+    counters: {},
+  };
+  
+  Object.freeze(initialState);
+
+  const fetchingData = {
+    isFetching: true,
+    counters: {},
+  };
+
+  it('should turn on isFetching flag', () => {
+    expect( counterReducer(initialState, deleteCounterRequest()) ).toEqual(fetchingData);
+  });  
+})
