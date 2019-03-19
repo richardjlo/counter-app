@@ -88,38 +88,22 @@ export const fetchCounters = () => {
     // Toggle isFetching flag on (fetchCountersRequest)
     dispatch(fetchCountersRequest());
 
-    // // Read data from Firestore
-    // countersRef.get().then(function(querySnapshot) {
-    //   let counters = {};
-    //   querySnapshot.forEach(function(doc) {
-    //       // doc.data() is never undefined for query doc snapshots
-    //       // TODO: For each counter, add object to counters object.
-    //       console.log(doc.id, " => ", doc.data());
-    //   });
-    // });
-
-    // const docRef = countersRef.doc('5oIt0YvjcNnv8in2mNGN');
-    // docRef.get()
-    //   .then(function(doc) {
-    //     if (doc.exists) {
-    //         console.log("Document data:", doc.data());
-    //         const counter = {
-    //           '5oIt0YvjcNnv8in2mNGN': doc.data,
-    //         };
-    //         dispatch(fetchCountersSuccess(counter));
-    //     } else {
-    //         // doc.data() will be undefined in this case
-    //         console.log("No such document!");
-    //     }
-    //   })
-    //   .catch(function(error) {
-    //     console.log("Error getting document:", error);
-    //   });
-
-
-    // Then dispatch (fetchCountersSuccess)
-
-    // Catch error
+    // Read data from Firestore
+    countersRef.get()
+    .then(function(querySnapshot) {
+      let counters = {};
+      querySnapshot.forEach(function(doc) {
+          counters = {
+            ...counters,
+            [doc.id]: doc.data(),
+          }
+      });
+      // Then dispatch (fetchCountersSuccess)
+      dispatch(fetchCountersSuccess(counters));
+    })
+    .catch(function(error) {
+      console.log("Error getting documents: ", error);
+    });
   };
 
   return fetchCountersDispatchFunction;
