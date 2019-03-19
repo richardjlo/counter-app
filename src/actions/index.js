@@ -156,7 +156,17 @@ export const incrementRequest = () => {
   return({
     type: INCREMENT,
   });
+};
+
+export const incrementSuccess = (response) => {
+  return({
+    type: INCREMENT,
+    status: 'success',
+    response: response,
+  });
 }
+
+
 
 // export const addCounter = () => {
 //   return({
