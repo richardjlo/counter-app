@@ -19,28 +19,36 @@ const initialState = {
 
 export const counterReducer = (state = initialState, action) => {  
   switch(action.type) {
-      case 'CREATE_COUNTER': 
-        if(action.status === 'success') {
-          return Object.assign(
-            {},
-            state,
-            {
-              isFetching: false,
-              counters: {
-                ...state.counters,
-                [action.response]: {value: 0 },
-              }
+    case 'CREATE_COUNTER': 
+      if(action.status === 'success') {
+        return Object.assign(
+          {},
+          state,
+          {
+            isFetching: false,
+            counters: {
+              ...state.counters,
+              [action.response]: {value: 0 },
             }
-          );
-        } else {
-          return Object.assign(
-            {},
-            state,
-            {
-              isFetching: true,
-            }
-          );
-        }        
+          }
+        );
+      } else {
+        return Object.assign(
+          {},
+          state,
+          {
+            isFetching: true,
+          }
+        );
+      }
+    case 'FETCH_COUNTERS':
+      return Object.assign(
+        {},
+        state,
+        {
+          isFetching: true,
+        }
+      );
     default:
       return state;
   }  
