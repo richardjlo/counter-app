@@ -126,7 +126,7 @@ export const deleteCounterSuccess = (response) => {
 
 export const deleteCounter = (id) => {
   const deleteCounterDispatchFunction = (dispatch) => {
-    console.log('Deleting counter!');
+    console.log('Deleting counter: ', id);
   }
   return deleteCounterDispatchFunction;
 };
