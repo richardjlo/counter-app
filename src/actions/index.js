@@ -151,6 +151,13 @@ export const deleteCounter = (id) => {
   return deleteCounterDispatchFunction;
 };
 
+const INCREMENT = 'INCREMENT';
+export const incrementRequest = () => {
+  return({
+    type: INCREMENT,
+  });
+}
+
 // export const addCounter = () => {
 //   return({
 //     type: 'ADD_COUNTER',
