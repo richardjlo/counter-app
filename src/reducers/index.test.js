@@ -7,7 +7,8 @@ import {
   deleteCounterRequest,
   deleteCounterSuccess,
   incrementRequest,
-  incrementSuccess
+  incrementSuccess, 
+  decrementRequest
 } from '../actions/index';
 
 describe('Counter Reducer', () => {
@@ -357,5 +358,23 @@ describe('incrementSuccess action creator', () => {
   it('should increment 1 of 2 counters', () => {
     expect(counterReducer(twoCounters, incrementSuccess(incrementedCounter2))).toEqual(incrementedCounterState2)
   });
+});
+
+describe('decrementRequest action creator', () => {
+  const initialState = {
+    isFetching: false,
+    counters: {},
+  };
+  
+  Object.freeze(initialState);
+
+  const fetchingData = {
+    isFetching: true,
+    counters: {},
+  };
+
+  it('should turn on isFetching flag', () => {
+    expect(counterReducer(initialState, decrementRequest())).toEqual(fetchingData);
+  })
 });
 
