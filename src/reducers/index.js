@@ -1,20 +1,6 @@
-const counter1_id = 'b9mY8KQy2p4FIb7MJ5LP';
-const counter2_id = 'uB3LUWoA8tsdxDzTq0Py';
-const counter3_id = 'uB3LUWoA8tsdxDzTq3xm';
-
 const initialState = {
   isFetching: false,
-  counters: {
-    [counter1_id]: {
-      value: 1,
-    },
-    [counter2_id]: {
-      value: 2,
-    },
-    [counter3_id]: {
-      value: 3,
-    }
-  }
+  counters: {},
 };
 
 export const counterReducer = (state = initialState, action) => {  
