@@ -64,6 +64,13 @@ export const fetchCountersRequest = () => {
   });
 };
 
+export const fetchCountersSuccess = (response) => {
+  return({
+    type: FETCH_COUNTERS,
+    status: 'success',
+    response: response,
+  });
+};
 // export const addCounter = () => {
 //   return({
 //     type: 'ADD_COUNTER',
