@@ -141,15 +141,12 @@ export const deleteCounter = (id) => {
               [doc.id]: doc.data(),
             }
         });
-        // Then dispatch (deleteCounterSuccess)
         dispatch(deleteCounterSuccess(counters));
       })
     })    
     .catch(function(error) {
         console.error("Error removing document: ", error);
     });    
-
-    // Return counters object     
   }
   return deleteCounterDispatchFunction;
 };
