@@ -166,6 +166,13 @@ export const incrementSuccess = (response) => {
   });
 }
 
+export const increment = (id) => {  
+  const incrementDispatchFunction = () => {
+    console.log('Incrementing Counter: ', id);
+  };
+
+  return incrementDispatchFunction;
+}
 
 
 // export const addCounter = () => {

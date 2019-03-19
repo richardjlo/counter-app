@@ -13,7 +13,7 @@ export class CounterApp extends React.Component {
     const { 
       countersList, 
       handleAddCounterButton, 
-      // handleIncrement, 
+      handleIncrement, 
       // handleDecrement, 
       handleDeleteCounterButton,
       // handleAsyncIncrement,
@@ -39,6 +39,7 @@ export class CounterApp extends React.Component {
           key={id}
           count={counter.value}
           onDelete={() => {handleDeleteCounterButton(id)}}          
+          onIncrement={() => {handleIncrement(id)}}          
         />
       );
     });

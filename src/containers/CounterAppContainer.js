@@ -2,7 +2,7 @@ import { CounterApp } from '../components/CounterApp';
 import { 
   createCounter,
   // addCounter, 
-  // increment, 
+  increment, 
   // decrement, 
   deleteCounter, 
   // asyncIncrement,, 
@@ -29,7 +29,7 @@ function mapDispatchToProps(dispatch) {
       {
         handleAddCounterButton: createCounter,
         fetchCounters: fetchCounters,
-        // handleIncrement: increment,
+        handleIncrement: increment,
         // handleDecrement: decrement,
         handleDeleteCounterButton: deleteCounter,
         // handleAsyncIncrement: asyncIncrement,

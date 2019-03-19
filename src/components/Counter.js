@@ -6,7 +6,7 @@ import React from 'react';
 export const Counter = (props) => { 
   const { 
     count, 
-    // onIncrement, 
+    onIncrement, 
     // onDecrement, 
     onDelete, 
     // onAsyncIncrement 
@@ -15,14 +15,13 @@ export const Counter = (props) => {
     <React.Fragment>
       <p>
         Clicked: {count} times
-        {/* {' '}
+        {' '}
         <button onClick={onIncrement}>+</button>
         {' '}
-        <button onClick={onDecrement}>-</button>  
+        {/* <button onClick={onDecrement}>-</button>  
         {' '}
         <button onClick={onAsyncIncrement}>Async Increment</button>          
-  */}
-        {' '}
+        {' '} */}
         <button onClick={onDelete}>Delete</button> 
       </p>
     </React.Fragment>
