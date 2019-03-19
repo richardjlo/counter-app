@@ -54,17 +54,21 @@ describe('createCounterSuccess action creator', () => {
   // const counter1_id = 'b9mY8KQy2p4FIb7MJ5LP';
   // const counter2_id = 'uB3LUWoA8tsdxDzTq0Py';
   // const counter3_id = 'uB3LUWoA8tsdxDzTq3xm';
+
+  // Counter 1
   const b9mY8KQy2p4FIb7MJ5LP = {
     id: 'b9mY8KQy2p4FIb7MJ5LP',
     created: 1552892019,
     value: 0,
   };
 
-  // const b9mY8KQy2p4FIb7MJ5LQ = {
-  //   created: 1552892020,
-  //   value: 1,
-  // };
+  // Counter 2
+  const b9mY8KQy2p4FIb7MJ5LQ = {
+    created: 1552892020,
+    value: 1,
+  };
 
+  // Counter 3
   // const b9mY8KQy2p4FIb7MJ5LX = {
   //   created: 1552892021,
   //   value: 2,
@@ -77,7 +81,7 @@ describe('createCounterSuccess action creator', () => {
   const oneCounter = {
     isFetching: false,
     counters: {
-      [b9mY8KQy2p4FIb7MJ5LP.id]: b9mY8KQy2p4FIb7MJ5LP,
+      [b9mY8KQy2p4FIb7MJ5LP.id]: b9mY8KQy2p4FIb7MJ5LP,      
     }
   };
 
@@ -86,23 +90,23 @@ describe('createCounterSuccess action creator', () => {
       .toEqual(oneCounter);
   });
 
-  // Object.freeze(oneCounter);
+  Object.freeze(oneCounter);
 
-  // const twoCounters = {
-  //   isFetching: false, 
-  //   counters: {
-  //     [counter1_id]: {
-  //       value: 0,
-  //     },
-  //     [counter2_id]: {
-  //       value: 0,
-  //     }
-  //   }     
-  // };
+  const newCounter2 = {
+    [b9mY8KQy2p4FIb7MJ5LQ.id]: b9mY8KQy2p4FIb7MJ5LQ,
+  }
+
+  const twoCounters = {
+    isFetching: false, 
+    counters: {
+      [b9mY8KQy2p4FIb7MJ5LP.id]: b9mY8KQy2p4FIb7MJ5LP,
+      [b9mY8KQy2p4FIb7MJ5LQ.id]: b9mY8KQy2p4FIb7MJ5LQ,
+    }     
+  };
   
-  // it('should add counter from 1 counter to 2 counters', () => {
-  //   expect(counterReducer( oneCounter, createCounterSuccess(counter2_id)) ).toEqual(twoCounters);
-  // });
+  it('should add counter from 1 counter to 2 counters', () => {
+    expect(counterReducer( oneCounter, createCounterSuccess(newCounter2)) ).toEqual(twoCounters);
+  });
 
   // Object.freeze(twoCounters);
   // const threeCounters = {
