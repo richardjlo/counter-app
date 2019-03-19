@@ -4,7 +4,7 @@ import {
   // addCounter, 
   // increment, 
   // decrement, 
-  // deleteCounter, 
+  deleteCounter, 
   // asyncIncrement,, 
   fetchCounters,
 } from '../actions/index';
@@ -31,7 +31,7 @@ function mapDispatchToProps(dispatch) {
         fetchCounters: fetchCounters,
         // handleIncrement: increment,
         // handleDecrement: decrement,
-        // handleDeleteCounterButton: deleteCounter,
+        handleDeleteCounterButton: deleteCounter,
         // handleAsyncIncrement: asyncIncrement,
       }, 
     dispatch)
