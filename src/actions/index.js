@@ -37,21 +37,30 @@ export const createCounterSuccess = (response) => {
 
 export const createCounter = () => {
   const createCounterDispatchFunction = (dispatch) => {
+    
     // Toggle isFetching flag ON.
     dispatch(createCounterRequest()); 
-    
+
+    // Create new counter & add to Firestore
     const timestamp = firebase.firestore.Timestamp.now().seconds;
-    const timestampStr = timestamp.toString();
-    
-    countersRef.doc(timestampStr).set({
+    const newCounter = {
       value: 0,
-      id: timestamp,
+      created: timestamp,
+    };
+    countersRef.add(newCounter)
+
+    // Dispatch createCounterSuccess action creator to update local store
+    .then(function(docRef) {            
+      dispatch(createCounterSuccess({
+        [docRef.id]: newCounter,
+      }))
     })
+
+    // All done. 
     .then(function() {
       console.log('Counter created!');
-      // TODO: Send document id to addCounter action creator
-      // dispatch( createCounterSuccess(id) );
     })
+
     .catch(function(error) {
       console.error("Error writing document: ", error);
     });    
@@ -89,23 +98,23 @@ export const fetchCounters = () => {
     //   });
     // });
 
-    const docRef = countersRef.doc('5oIt0YvjcNnv8in2mNGN');
-    docRef.get()
-      .then(function(doc) {
-        if (doc.exists) {
-            console.log("Document data:", doc.data());
-            const counter = {
-              '5oIt0YvjcNnv8in2mNGN': doc.data,
-            };
-            dispatch(fetchCountersSuccess(counter));
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-      })
-      .catch(function(error) {
-        console.log("Error getting document:", error);
-      });
+    // const docRef = countersRef.doc('5oIt0YvjcNnv8in2mNGN');
+    // docRef.get()
+    //   .then(function(doc) {
+    //     if (doc.exists) {
+    //         console.log("Document data:", doc.data());
+    //         const counter = {
+    //           '5oIt0YvjcNnv8in2mNGN': doc.data,
+    //         };
+    //         dispatch(fetchCountersSuccess(counter));
+    //     } else {
+    //         // doc.data() will be undefined in this case
+    //         console.log("No such document!");
+    //     }
+    //   })
+    //   .catch(function(error) {
+    //     console.log("Error getting document:", error);
+    //   });
 
 
     // Then dispatch (fetchCountersSuccess)
