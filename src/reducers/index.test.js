@@ -2,6 +2,7 @@ import {counterReducer} from './index'
 import { 
   createCounterRequest, 
   createCounterSuccess,
+  fetchCountersRequest,
 } from '../actions/index';
 
 describe('Counter Reducer', () => {
@@ -49,7 +50,7 @@ describe('createCounterRequest action creator', () => {
   const fetchingNewCounter = {
     isFetching: true,
     counters: {},
-  }
+  };
 
   it('should turn on isFetching flag', () => {
     expect( counterReducer(initialState, createCounterRequest()) ).toEqual(fetchingNewCounter);
@@ -118,4 +119,22 @@ describe('createCounterSuccess action creator', () => {
   it('should add counter from 2 counters to 3 counters', () => {
     expect(counterReducer( twoCounters, createCounterSuccess(counter3_id)) ).toEqual(threeCounters);
   });    
+});
+
+describe('fetchCountersRequest action creator', () => {
+  const initialState = {
+    isFetching: false,
+    counters: {},
+  };
+  
+  Object.freeze(initialState);
+
+  const fetchingData = {
+    isFetching: true,
+    counters: {},
+  };
+
+  it('should turn on isFetching flag', () => {
+    expect( counterReducer(initialState, fetchCountersRequest()) ).toEqual(fetchingData);
+  });
 });
