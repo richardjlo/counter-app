@@ -3,6 +3,7 @@ import {
   createCounterRequest, 
   createCounterSuccess,
   fetchCountersRequest,
+  fetchCountersSuccess
 } from '../actions/index';
 
 describe('Counter Reducer', () => {
@@ -136,5 +137,38 @@ describe('fetchCountersRequest action creator', () => {
 
   it('should turn on isFetching flag', () => {
     expect( counterReducer(initialState, fetchCountersRequest()) ).toEqual(fetchingData);
+  });
+});
+
+describe('fetchCountersSuccess action creator', () => {
+  const initialState = {
+    isFetching: false,
+    counters: {},
+  };
+
+  Object.freeze(initialState);
+  const counter1_id = 'b9mY8KQy2p4FIb7MJ5LP';
+  const counter2_id = 'uB3LUWoA8tsdxDzTq0Py';
+  const counter3_id = 'uB3LUWoA8tsdxDzTq3xm';  
+
+  const threeCounters = {
+    isFetching: false, 
+    counters: {
+      [counter1_id]: {
+        value: 0,
+      },
+      [counter2_id]: {
+        value: 0,
+      },
+      [counter3_id]: {
+        value: 0,
+      }
+    }
+  };
+
+  Object.freeze(threeCounters);
+  
+  it('should update state with counters from db', () => {
+    expect( counterReducer(initialState, fetchCountersSuccess(threeCounters.counters)) ).toEqual(threeCounters);
   });
 });
