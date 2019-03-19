@@ -55,32 +55,30 @@ describe('createCounterSuccess action creator', () => {
   // const counter2_id = 'uB3LUWoA8tsdxDzTq0Py';
   // const counter3_id = 'uB3LUWoA8tsdxDzTq3xm';
   const b9mY8KQy2p4FIb7MJ5LP = {
+    id: 'b9mY8KQy2p4FIb7MJ5LP',
     created: 1552892019,
     value: 0,
   };
 
-  const b9mY8KQy2p4FIb7MJ5LQ = {
-    created: 1552892020,
-    value: 1,
-  };
+  // const b9mY8KQy2p4FIb7MJ5LQ = {
+  //   created: 1552892020,
+  //   value: 1,
+  // };
 
-  const b9mY8KQy2p4FIb7MJ5LX = {
-    created: 1552892021,
-    value: 2,
-  };
+  // const b9mY8KQy2p4FIb7MJ5LX = {
+  //   created: 1552892021,
+  //   value: 2,
+  // };
 
   const oneCounter = {
     isFetching: false,
     counters: {
-      b9mY8KQy2p4FIb7MJ5LP: {
-        created: 1552892019,
-        value: 0,
-      }        
+      [b9mY8KQy2p4FIb7MJ5LP.id]: b9mY8KQy2p4FIb7MJ5LP,
     }
   };
 
   it('should add counter to empty counters list.', () => {
-    expect(counterReducer( initialState, createCounterSuccess('b9mY8KQy2p4FIb7MJ5LP', b9mY8KQy2p4FIb7MJ5LP)) )
+    expect(counterReducer( initialState, createCounterSuccess(b9mY8KQy2p4FIb7MJ5LP)) )
       .toEqual(oneCounter);
   });
 
