@@ -197,11 +197,6 @@ export const increment = (id) => {
     }).catch(function(error) {
         console.log("Error getting document:", error);
     });
-
-    // countersRef.doc(id).update({
-    //   value: value ++,
-    // });
-    // console.log('Incrementing Counter: ', id);
   };
 
   return incrementDispatchFunction;
