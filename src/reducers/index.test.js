@@ -70,6 +70,10 @@ describe('createCounterSuccess action creator', () => {
   //   value: 2,
   // };
 
+  const newCounter = {
+    [b9mY8KQy2p4FIb7MJ5LP.id]: b9mY8KQy2p4FIb7MJ5LP
+  };
+
   const oneCounter = {
     isFetching: false,
     counters: {
@@ -78,7 +82,7 @@ describe('createCounterSuccess action creator', () => {
   };
 
   it('should add counter to empty counters list.', () => {
-    expect(counterReducer( initialState, createCounterSuccess(b9mY8KQy2p4FIb7MJ5LP)) )
+    expect(counterReducer( initialState, createCounterSuccess(newCounter)) )
       .toEqual(oneCounter);
   });
 
