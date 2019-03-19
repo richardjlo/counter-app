@@ -18,6 +18,7 @@ const db = firebase.firestore();
 const countersRef = db.collection("counters");
 
 export const CREATE_COUNTER = 'CREATE_COUNTER';
+export const FETCH_COUNTERS = 'FETCH_COUNTERS';
 
 export const createCounterRequest = () => {
   console.log("Sending create counter request...")
@@ -55,6 +56,12 @@ export const createCounter = () => {
   }
 
   return createCounterDispatchFunction;
+};
+
+export const fetchCountersRequest = () => {
+  return({
+    type: FETCH_COUNTERS,
+  });
 };
 
 // export const addCounter = () => {
