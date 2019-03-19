@@ -48,7 +48,12 @@ export const counterReducer = (state = initialState, action) => {
             isFetching: true,
           }
         );
-      }      
+      }
+    case 'DELETE_COUNTER':
+      return({
+        ...state,
+        isFetching: true,        
+      });
     default:
       return state;
   }  
