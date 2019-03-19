@@ -6,6 +6,9 @@ import { Counter } from './Counter';
  */
 
 export class CounterApp extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(fetchCounters());
+  }
   render() {
     const { 
       countersList, 
