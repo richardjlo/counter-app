@@ -287,6 +287,12 @@ describe('incrementSuccess action creator', () => {
     value: 0,
   };
 
+  // Counter 2
+  const b9mY8KQy2p4FIb7MJ5LQ = {
+    created: 1552892020,
+    value: 1,
+  };
+
   const oneCounter = {
     isFetching: false,
     counters: {
@@ -317,6 +323,39 @@ describe('incrementSuccess action creator', () => {
 
   it('should increment counter', () => {
     expect(counterReducer(oneCounter, incrementSuccess(incrementedCounter))).toEqual(incrementedCounterState)
+  });
+
+  const twoCounters = {
+    isFetching: false,
+    counters: {
+      b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
+      b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
+    },    
+  };
+
+  Object.freeze(twoCounters);
+
+  const incrementedCounter2 = {
+    b9mY8KQy2p4FIb7MJ5LP: {
+      created: 1552892019,
+      value: 0,
+    },
+    b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
+  }
+
+  const incrementedCounterState2 = {
+    isFetching: false,
+    counters: {
+      b9mY8KQy2p4FIb7MJ5LP: {
+        created: 1552892019,
+        value: 0,
+      },
+      b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
+    },
+  }
+
+  it('should increment 1 of 2 counters', () => {
+    expect(counterReducer(twoCounters, incrementSuccess(incrementedCounter2))).toEqual(incrementedCounterState2)
   });
 });
 
