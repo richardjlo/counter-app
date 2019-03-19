@@ -7,6 +7,7 @@ import {
   deleteCounterRequest,
   deleteCounterSuccess,
   incrementRequest,
+  incrementSuccess
 } from '../actions/index';
 
 describe('Counter Reducer', () => {
@@ -277,4 +278,45 @@ describe('incrementRequest action creator', () => {
   it('should turn on isFetching flag', () => {
     expect( counterReducer(initialState, incrementRequest()) ).toEqual(fetchingData);
   });  
-})
+});
+
+describe('incrementSuccess action creator', () => {
+  // Counter 1
+  const b9mY8KQy2p4FIb7MJ5LP = {
+    created: 1552892019,
+    value: 0,
+  };
+
+  const oneCounter = {
+    isFetching: false,
+    counters: {
+      b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,      
+    }
+  };
+
+  Object.freeze(oneCounter);
+
+  const incrementedCounter = {
+    b9mY8KQy2p4FIb7MJ5LP: {
+      created: 1552892019,
+      value: 1,
+    }
+  };
+
+  const incrementedCounterState = {
+    isFetching: false,
+    counters: {
+      b9mY8KQy2p4FIb7MJ5LP: {
+        created: 1552892019,
+        value: 1,
+      },      
+    }
+  };
+
+  Object.freeze(oneCounter);
+
+  it('should increment counter', () => {
+    expect(counterReducer(oneCounter, incrementSuccess(incrementedCounter))).toEqual(incrementedCounterState)
+  });
+});
+
