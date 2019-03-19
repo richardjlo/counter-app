@@ -7,23 +7,27 @@ import {
 } from '../actions/index';
 
 describe('Counter Reducer', () => {
-  const counter1_id = 'b9mY8KQy2p4FIb7MJ5LP';
-  const counter2_id = 'uB3LUWoA8tsdxDzTq0Py';
-  const counter3_id = 'uB3LUWoA8tsdxDzTq3xm';
+  const counter1 = {
+    id: 'b9mY8KQy2p4FIb7MJ5LP',
+    created: 1552892019,
+    value: 0,
+  };
+
+  const counter2 = {
+    id: 'b9mY8KQy2p4FIb7MJ5LQ',
+    created: 1552892020,
+    value: 1,
+  };
+
+  const counter3 = {
+    id: 'b9mY8KQy2p4FIb7MJ5LX',
+    created: 1552892021,
+    value: 2,
+  };
   
   const initialState = {
     isFetching: false,
-    counters: {
-      [counter1_id]: {
-        value: 1,
-      },
-      [counter2_id]: {
-        value: 2,
-      },
-      [counter3_id]: {
-        value: 3,
-      }
-    }
+    counters: {},
   };  
 
   it('should return true if Counter Reducer exists', () => {
