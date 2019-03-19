@@ -167,8 +167,41 @@ export const incrementSuccess = (response) => {
 }
 
 export const increment = (id) => {  
-  const incrementDispatchFunction = () => {
-    console.log('Incrementing Counter: ', id);
+  const incrementDispatchFunction = (dispatch) => {
+    dispatch(incrementRequest());
+
+    countersRef.doc(id).get()
+    .then(function(doc) {
+      if (doc.exists) {
+          console.log("Document data:", doc.data());
+          console.log(doc.data().value);
+          countersRef.doc(id).update({
+            value: doc.data().value + 1,
+          })
+          .then(function() {
+            countersRef.get().then(function(querySnapshot) {
+              let counters = {};
+              querySnapshot.forEach(function(doc) {
+                  counters = {
+                    ...counters,
+                    [doc.id]: doc.data(),
+                  }
+              });
+              dispatch(incrementSuccess(counters));
+            })
+          })    
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+
+    // countersRef.doc(id).update({
+    //   value: value ++,
+    // });
+    // console.log('Incrementing Counter: ', id);
   };
 
   return incrementDispatchFunction;
