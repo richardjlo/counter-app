@@ -38,17 +38,19 @@ export const createCounterSuccess = (response) => {
 export const createCounter = () => {
   const createCounterDispatchFunction = (dispatch) => {
     // Toggle isFetching flag ON.
-    dispatch(createCounterRequest());  
+    dispatch(createCounterRequest()); 
     
-    // Add a new document in collection "counters"
-    countersRef.add({
+    const timestamp = firebase.firestore.Timestamp.now().seconds;
+    const timestampStr = timestamp.toString();
+    
+    countersRef.doc(timestampStr).set({
       value: 0,
-      created: firebase.firestore.Timestamp.now().seconds,
+      id: timestamp,
     })
-    .then(function(docRef) {
-      console.log("Counter created! Document written with ID: ", docRef.id);
+    .then(function() {
+      console.log('Counter created!');
       // TODO: Send document id to addCounter action creator
-      dispatch( createCounterSuccess(docRef.id) );
+      // dispatch( createCounterSuccess(id) );
     })
     .catch(function(error) {
       console.error("Error writing document: ", error);
