@@ -202,6 +202,14 @@ export const increment = (id) => {
   return incrementDispatchFunction;
 }
 
+const DECREMENT = 'DECREMENT';
+
+export const decrementRequest = () => {
+  return({
+    type: DECREMENT,
+  });
+}
+
 
 // export const addCounter = () => {
 //   return({
