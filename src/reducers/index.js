@@ -42,13 +42,27 @@ export const counterReducer = (state = initialState, action) => {
         );
       }
     case 'FETCH_COUNTERS':
-      return Object.assign(
-        {},
-        state,
-        {
-          isFetching: true,
-        }
-      );
+      if(action.status === 'success') {
+        return Object.assign(
+          {},
+          state,
+          {
+            isFetching: false,
+            counters: {
+              ...state.counters,
+              ...action.response,
+            }
+          }
+        );
+      } else {
+        return Object.assign(
+          {},
+          state,
+          {
+            isFetching: true,
+          }
+        );
+      }      
     default:
       return state;
   }  
