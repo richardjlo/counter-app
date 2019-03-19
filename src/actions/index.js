@@ -79,8 +79,10 @@ export const fetchCounters = () => {
 
     // Read data from Firestore
     countersRef.get().then(function(querySnapshot) {
+      let counters = {};
       querySnapshot.forEach(function(doc) {
           // doc.data() is never undefined for query doc snapshots
+          // TODO: For each counter, add object to counters object.
           console.log(doc.id, " => ", doc.data());
       });
     });
