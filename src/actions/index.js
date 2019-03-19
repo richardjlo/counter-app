@@ -71,6 +71,28 @@ export const fetchCountersSuccess = (response) => {
     response: response,
   });
 };
+
+export const fetchCounters = () => {
+  const fetchCountersDispatchFunction = (dispatch) => {
+    // Toggle isFetching flag on (fetchCountersRequest)
+    dispatch(fetchCountersRequest());
+
+    // Read data from Firestore
+    countersRef.get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+      });
+    });
+
+    // Then dispatch (fetchCountersSuccess)
+
+    // Catch error
+  };
+
+  return fetchCountersDispatchFunction;
+};
+
 // export const addCounter = () => {
 //   return({
 //     type: 'ADD_COUNTER',
