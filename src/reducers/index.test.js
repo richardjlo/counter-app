@@ -64,15 +64,17 @@ describe('createCounterSuccess action creator', () => {
 
   // Counter 2
   const b9mY8KQy2p4FIb7MJ5LQ = {
+    id: 'b9mY8KQy2p4FIb7MJ5LQ',
     created: 1552892020,
     value: 1,
   };
 
   // Counter 3
-  // const b9mY8KQy2p4FIb7MJ5LX = {
-  //   created: 1552892021,
-  //   value: 2,
-  // };
+  const b9mY8KQy2p4FIb7MJ5LX = {
+    id: 'b9mY8KQy2p4FIb7MJ5LX',
+    created: 1552892021,
+    value: 2,
+  };
 
   const newCounter = {
     [b9mY8KQy2p4FIb7MJ5LP.id]: b9mY8KQy2p4FIb7MJ5LP
@@ -108,25 +110,24 @@ describe('createCounterSuccess action creator', () => {
     expect(counterReducer( oneCounter, createCounterSuccess(newCounter2)) ).toEqual(twoCounters);
   });
 
-  // Object.freeze(twoCounters);
-  // const threeCounters = {
-  //   isFetching: false, 
-  //   counters: {
-  //     [counter1_id]: {
-  //       value: 0,
-  //     },
-  //     [counter2_id]: {
-  //       value: 0,
-  //     },
-  //     [counter3_id]: {
-  //       value: 0,
-  //     }
-  //   }
-  // };
+  Object.freeze(twoCounters);
 
-  // it('should add counter from 2 counters to 3 counters', () => {
-  //   expect(counterReducer( twoCounters, createCounterSuccess(counter3_id)) ).toEqual(threeCounters);
-  // });    
+  const newCounter3 = {
+    [b9mY8KQy2p4FIb7MJ5LX.id]: b9mY8KQy2p4FIb7MJ5LX,
+  }
+  
+  const threeCounters = {
+    isFetching: false,
+    counters: {
+      [b9mY8KQy2p4FIb7MJ5LP.id]: b9mY8KQy2p4FIb7MJ5LP,
+      [b9mY8KQy2p4FIb7MJ5LQ.id]: b9mY8KQy2p4FIb7MJ5LQ,
+      [b9mY8KQy2p4FIb7MJ5LX.id]: b9mY8KQy2p4FIb7MJ5LX,
+    }
+  };
+
+  it('should add 1 counter to 2 counters.', () => {
+    expect( counterReducer(twoCounters, createCounterSuccess(newCounter3))).toEqual(threeCounters);
+  });
 });
 
 describe('fetchCountersRequest action creator', () => {
