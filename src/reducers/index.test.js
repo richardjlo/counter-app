@@ -6,6 +6,7 @@ import {
   fetchCountersSuccess, 
   deleteCounterRequest,
   deleteCounterSuccess,
+  incrementRequest,
 } from '../actions/index';
 
 describe('Counter Reducer', () => {
@@ -243,11 +244,37 @@ describe('deleteCounterSuccess action creator', () => {
     expect( counterReducer(oneCounter, deleteCounterSuccess({}))).toEqual(emptyCounters);
   });
 
+  const twoCounters = {
+    isFetching: false,
+    counters: {
+      b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
+      b9mY8KQy2p4FIb7MJ5LX: b9mY8KQy2p4FIb7MJ5LX,
+    },    
+  }
+
   // Deleting counter (b9mY8KQy2p4FIb7MJ5LP)
   it('should delete one single counter from a group of 3', () => {
     expect( counterReducer(threeCounters, deleteCounterSuccess({
       b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
       b9mY8KQy2p4FIb7MJ5LX: b9mY8KQy2p4FIb7MJ5LX,
-    }))).toEqual(emptyCounters);
+    }))).toEqual(twoCounters);
   });
 });
+
+// describe('incrementRequest action creator', () => {
+//   const initialState = {
+//     isFetching: false,
+//     counters: {},
+//   };
+  
+//   Object.freeze(initialState);
+
+//   const fetchingData = {
+//     isFetching: true,
+//     counters: {},
+//   };
+
+//   it('should turn on isFetching flag', () => {
+//     expect( counterReducer(initialState, incrementRequest()) ).toEqual(fetchingData);
+//   });  
+// })
