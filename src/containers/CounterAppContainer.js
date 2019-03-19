@@ -5,7 +5,8 @@ import {
   // increment, 
   // decrement, 
   // deleteCounter, 
-  // asyncIncrement,
+  // asyncIncrement,, 
+  fetchCounters,
 } from '../actions/index';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -27,6 +28,7 @@ function mapDispatchToProps(dispatch) {
     bindActionCreators(
       {
         handleAddCounterButton: createCounter,
+        fetchCounters: fetchCounters,
         // handleIncrement: increment,
         // handleDecrement: decrement,
         // handleDeleteCounterButton: deleteCounter,
