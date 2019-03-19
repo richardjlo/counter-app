@@ -54,33 +54,30 @@ describe('createCounterSuccess action creator', () => {
 
   // Counter 1
   const b9mY8KQy2p4FIb7MJ5LP = {
-    id: 'b9mY8KQy2p4FIb7MJ5LP',
     created: 1552892019,
     value: 0,
   };
 
   // Counter 2
   const b9mY8KQy2p4FIb7MJ5LQ = {
-    id: 'b9mY8KQy2p4FIb7MJ5LQ',
     created: 1552892020,
     value: 1,
   };
 
   // Counter 3
   const b9mY8KQy2p4FIb7MJ5LX = {
-    id: 'b9mY8KQy2p4FIb7MJ5LX',
     created: 1552892021,
     value: 2,
   };
 
   const newCounter = {
-    [b9mY8KQy2p4FIb7MJ5LP.id]: b9mY8KQy2p4FIb7MJ5LP
+    b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP
   };
 
   const oneCounter = {
     isFetching: false,
     counters: {
-      [b9mY8KQy2p4FIb7MJ5LP.id]: b9mY8KQy2p4FIb7MJ5LP,      
+      b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,      
     }
   };
 
@@ -92,14 +89,14 @@ describe('createCounterSuccess action creator', () => {
   Object.freeze(oneCounter);
 
   const newCounter2 = {
-    [b9mY8KQy2p4FIb7MJ5LQ.id]: b9mY8KQy2p4FIb7MJ5LQ,
+    b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
   }
 
   const twoCounters = {
     isFetching: false, 
     counters: {
-      [b9mY8KQy2p4FIb7MJ5LP.id]: b9mY8KQy2p4FIb7MJ5LP,
-      [b9mY8KQy2p4FIb7MJ5LQ.id]: b9mY8KQy2p4FIb7MJ5LQ,
+      b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
+      b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
     }     
   };
   
@@ -110,15 +107,15 @@ describe('createCounterSuccess action creator', () => {
   Object.freeze(twoCounters);
 
   const newCounter3 = {
-    [b9mY8KQy2p4FIb7MJ5LX.id]: b9mY8KQy2p4FIb7MJ5LX,
+    b9mY8KQy2p4FIb7MJ5LX: b9mY8KQy2p4FIb7MJ5LX,
   }
   
   const threeCounters = {
     isFetching: false,
     counters: {
-      [b9mY8KQy2p4FIb7MJ5LP.id]: b9mY8KQy2p4FIb7MJ5LP,
-      [b9mY8KQy2p4FIb7MJ5LQ.id]: b9mY8KQy2p4FIb7MJ5LQ,
-      [b9mY8KQy2p4FIb7MJ5LX.id]: b9mY8KQy2p4FIb7MJ5LX,
+      b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
+      b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
+      b9mY8KQy2p4FIb7MJ5LX: b9mY8KQy2p4FIb7MJ5LX,
     }
   };
 
