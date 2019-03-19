@@ -127,12 +127,29 @@ export const deleteCounterSuccess = (response) => {
 export const deleteCounter = (id) => {
   const deleteCounterDispatchFunction = (dispatch) => {
     // Dispatch deleteCounterRequest
+    console.log('Deleting counter: ', id);
     dispatch(deleteCounterRequest());
 
     // Delete counter from Firestore
+    countersRef.doc(id).delete()
+    .then(function() {
+      countersRef.get().then(function(querySnapshot) {
+        let counters = {};
+        querySnapshot.forEach(function(doc) {
+            counters = {
+              ...counters,
+              [doc.id]: doc.data(),
+            }
+        });
+        // Then dispatch (deleteCounterSuccess)
+        dispatch(deleteCounterSuccess(counters));
+      })
+    })    
+    .catch(function(error) {
+        console.error("Error removing document: ", error);
+    });    
 
-    // Return counters object 
-    console.log('Deleting counter: ', id);
+    // Return counters object     
   }
   return deleteCounterDispatchFunction;
 };
