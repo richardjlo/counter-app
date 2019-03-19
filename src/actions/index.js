@@ -126,6 +126,12 @@ export const deleteCounterSuccess = (response) => {
 
 export const deleteCounter = (id) => {
   const deleteCounterDispatchFunction = (dispatch) => {
+    // Dispatch deleteCounterRequest
+    dispatch(deleteCounterRequest());
+
+    // Delete counter from Firestore
+
+    // Return counters object 
     console.log('Deleting counter: ', id);
   }
   return deleteCounterDispatchFunction;
