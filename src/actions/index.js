@@ -109,6 +109,21 @@ export const fetchCounters = () => {
   return fetchCountersDispatchFunction;
 };
 
+const DELETE_COUNTER = 'DELETE_COUNTER';
+export const deleteCounterRequest = () => {
+  return({
+    type: DELETE_COUNTER,
+  });
+};
+
+export const deleteCounterSuccess = (response) => {
+  return({
+    type: DELETE_COUNTER,
+    status:'success',
+    response: response,
+  });
+}
+
 // export const addCounter = () => {
 //   return({
 //     type: 'ADD_COUNTER',
