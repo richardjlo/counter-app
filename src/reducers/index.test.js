@@ -51,9 +51,6 @@ describe('createCounterSuccess action creator', () => {
   };
   
   Object.freeze(initialState);
-  // const counter1_id = 'b9mY8KQy2p4FIb7MJ5LP';
-  // const counter2_id = 'uB3LUWoA8tsdxDzTq0Py';
-  // const counter3_id = 'uB3LUWoA8tsdxDzTq3xm';
 
   // Counter 1
   const b9mY8KQy2p4FIb7MJ5LP = {
