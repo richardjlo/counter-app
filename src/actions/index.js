@@ -124,6 +124,13 @@ export const deleteCounterSuccess = (response) => {
   });
 };
 
+export const deleteCounter = (id) => {
+  const deleteCounterDispatchFunction = (dispatch) => {
+
+  }
+  return deleteCounterDispatchFunction;
+};
+
 // export const addCounter = () => {
 //   return({
 //     type: 'ADD_COUNTER',
