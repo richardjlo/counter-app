@@ -50,10 +50,18 @@ export const counterReducer = (state = initialState, action) => {
         );
       }
     case 'DELETE_COUNTER':
-      return({
-        ...state,
-        isFetching: true,        
-      });
+      if(action.status === 'success') {
+        return({
+          ...state,
+          isFetching: false,
+          counters: action.response,
+        });
+      } else {
+        return({
+          ...state,
+          isFetching: true,        
+        });
+      }
     default:
       return state;
   }  
