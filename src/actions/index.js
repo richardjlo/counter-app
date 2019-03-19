@@ -210,6 +210,14 @@ export const decrementRequest = () => {
   });
 }
 
+export const decrementSuccess = (response) => {
+  return({
+    type: DECREMENT,
+    status: 'success',
+    response: response,
+  });
+};
+
 
 // export const addCounter = () => {
 //   return({
