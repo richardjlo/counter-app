@@ -74,7 +74,12 @@ export const counterReducer = (state = initialState, action) => {
         ...state,
         isFetching: true,
       });
-    }    
+    }
+    case 'DECREMENT':
+      return({
+        ...state, 
+        isFetching: true,
+      });
     default:
       return state;
   }  
