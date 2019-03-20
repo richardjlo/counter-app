@@ -77,20 +77,17 @@ export const counterReducer = (state = initialState, action) => {
     }
     case 'DECREMENT':
       if(action.status === 'success') {
-        return Object.assign(
-          {},
-          state,
-          {
-            isFetching: false,
-            counters: {
-              ...state.counters, // Copy counters
-              [action.id]: {
-                ...state.counters[action.id], // copy counter properties
-               value: state.counters[action.id].value -1, // Update value
-              }
-            }
+        return({
+          ...state,
+          isFetching: false,
+          counters: {
+            ...state.counters,
+            [action.id]: {
+              ...state.counters[action.id], // copy counter properties
+              value: state.counters[action.id].value -1, // Update value
+            },
           }
-        );
+        });
       } else {
         return({
           ...state, 
