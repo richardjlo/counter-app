@@ -8,7 +8,8 @@ import {
   deleteCounterSuccess,
   incrementRequest,
   incrementSuccess, 
-  decrementRequest
+  decrementRequest, 
+  decrementSuccess
 } from '../actions/index';
 
 describe('Counter Reducer', () => {
@@ -295,7 +296,7 @@ describe('incrementSuccess action creator', () => {
   };
 
   const oneCounter = {
-    isFetching: false,
+    isFetching: true,
     counters: {
       b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,      
     }
@@ -376,5 +377,42 @@ describe('decrementRequest action creator', () => {
   it('should turn on isFetching flag', () => {
     expect(counterReducer(initialState, decrementRequest())).toEqual(fetchingData);
   })
+});
+
+describe('decrementSuccess action creator', () => {
+  // Counter 1
+  const b9mY8KQy2p4FIb7MJ5LP = {
+    created: 1552892019,
+    value: 0,
+  };
+
+  // Counter 2
+  const b9mY8KQy2p4FIb7MJ5LQ = {
+    created: 1552892020,
+    value: 0,
+  };
+
+  const initialState = {
+    isFetching: true,
+    counters: {
+      b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
+      b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
+    },    
+  };
+
+  const decrementedState = {
+    isFetching: true,
+    counters: {
+      b9mY8KQy2p4FIb7MJ5LP: {
+        created: 1552892019,
+        value: -1,
+      },
+      b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
+    },        
+  };
+
+  it('should decrement counter', () => {
+    expect( counterReducer(initialState, decrementSuccess('b9mY8KQy2p4FIb7MJ5LP'))).toEqual(decrementedState);
+  });
 });
 
