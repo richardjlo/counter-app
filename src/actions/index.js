@@ -218,6 +218,14 @@ export const decrementSuccess = (id) => {
   });
 };
 
+export const decrement = (id) => {
+  const decrementDispatchFunction = (dispatch) => {
+    console.log("Decrementing counter # ", id);
+  };
+
+  return decrementDispatchFunction;
+};
+
 
 // export const addCounter = () => {
 //   return({
