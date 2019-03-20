@@ -220,6 +220,9 @@ export const decrementSuccess = (id) => {
 
 export const decrement = (id) => {
   const decrementDispatchFunction = (dispatch) => {
+    dispatch(decrementRequest());
+
+    
     console.log("Decrementing counter # ", id);
   };
 
