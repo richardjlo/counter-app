@@ -1,11 +1,9 @@
 import { CounterApp } from '../components/CounterApp';
 import { 
   createCounter,
-  // addCounter, 
   increment, 
   decrement, 
   deleteCounter, 
-  // asyncIncrement,, 
   fetchCounters,
 } from '../actions/index';
 import { connect } from "react-redux";
@@ -32,7 +30,6 @@ function mapDispatchToProps(dispatch) {
         handleIncrement: increment,
         handleDecrement: decrement,
         handleDeleteCounterButton: deleteCounter,
-        // handleAsyncIncrement: asyncIncrement,
       }, 
     dispatch)
   );
