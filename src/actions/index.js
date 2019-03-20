@@ -210,11 +210,11 @@ export const decrementRequest = () => {
   });
 }
 
-export const decrementSuccess = (response) => {
+export const decrementSuccess = (id) => {
   return({
     type: DECREMENT,
     status: 'success',
-    response: response,
+    id: id,
   });
 };
 
