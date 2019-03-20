@@ -158,11 +158,11 @@ export const incrementRequest = () => {
   });
 };
 
-export const incrementSuccess = (response) => {
+export const incrementSuccess = (id) => {
   return({
     type: INCREMENT,
     status: 'success',
-    response: response,
+    id: id,
   });
 }
 
