@@ -176,12 +176,12 @@ export const increment = (id) => {
           countersRef.doc(id).update({
             value: doc.data().value + 1,
           })
+          .then(() => {
+            dispatch(incrementSuccess(id));
+          })
       } else {
           console.log("No such document!");
       }
-    })
-    .then(() => {
-      dispatch(incrementSuccess(id));
     })
     .catch(function(error) {
         console.log("Error getting document:", error);
