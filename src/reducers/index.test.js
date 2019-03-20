@@ -400,7 +400,9 @@ describe('decrementSuccess action creator', () => {
     },    
   };
 
-  const decrementedState = {
+  Object.freeze(initialState);
+
+  const decrementedState1 = {
     isFetching: false,
     counters: {
       b9mY8KQy2p4FIb7MJ5LP: {
@@ -411,8 +413,23 @@ describe('decrementSuccess action creator', () => {
     },        
   };
 
+  const decrementedState2 = {
+    isFetching: false,
+    counters: {
+      b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
+      b9mY8KQy2p4FIb7MJ5LQ: {
+        created: 1552892020,
+        value: -1,
+      },
+    },        
+  };
+
   it('should decrement counter', () => {
-    expect( counterReducer(initialState, decrementSuccess('b9mY8KQy2p4FIb7MJ5LP'))).toEqual(decrementedState);
+    expect( counterReducer(initialState, decrementSuccess('b9mY8KQy2p4FIb7MJ5LP'))).toEqual(decrementedState1);
   });
+
+  it('should decrement counter', () => {
+    expect( counterReducer(initialState, decrementSuccess('b9mY8KQy2p4FIb7MJ5LQ'))).toEqual(decrementedState2);
+  }); 
 });
 
