@@ -330,28 +330,20 @@ describe('incrementSuccess action creator', () => {
 
   Object.freeze(twoCounters);
 
-  const incrementedCounter2 = {
-    b9mY8KQy2p4FIb7MJ5LP: {
-      created: 1552892019,
-      value: 0,
-    },
-    b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
-  }
-
   const incrementedCounterState2 = {
     isFetching: false,
     counters: {
       b9mY8KQy2p4FIb7MJ5LP: {
         created: 1552892019,
-        value: 0,
+        value: 1,
       },
       b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
     },
   }
 
-  // it('should increment 1 of 2 counters', () => {
-  //   expect(counterReducer(twoCounters, incrementSuccess(incrementedCounter2))).toEqual(incrementedCounterState2)
-  // });
+  it('should increment 1 of 2 counters', () => {
+    expect(counterReducer(twoCounters, incrementSuccess('b9mY8KQy2p4FIb7MJ5LP'))).toEqual(incrementedCounterState2)
+  });
 });
 
 describe('decrementRequest action creator', () => {
