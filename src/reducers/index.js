@@ -76,10 +76,27 @@ export const counterReducer = (state = initialState, action) => {
       });
     }
     case 'DECREMENT':
-      return({
-        ...state, 
-        isFetching: true,
-      });
+      if(action.status === 'success') {
+        return Object.assign(
+          {},
+          state,
+          {
+            isFetching: false,
+            counters: {
+              ...state.counters,
+              [action.id]: {
+               created: 1552892019,
+               value: -1,
+              }
+            }
+          }
+        );
+      } else {
+        return({
+          ...state, 
+          isFetching: true,
+        });
+      }      
     default:
       return state;
   }  
