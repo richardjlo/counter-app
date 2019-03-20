@@ -16,20 +16,7 @@ export class CounterApp extends React.Component {
       handleIncrement, 
       handleDecrement, 
       handleDeleteCounterButton,
-      // handleAsyncIncrement,
     } = this.props;
-    // const counters = countersList.map( (value, index) => {
-    //   return (
-    //     <Counter
-    //       key={index}
-    //       count={value}
-    //       onIncrement={() => {handleIncrement(index)}}
-    //       onDecrement={() => {handleDecrement(index)}}
-    //       onDelete={() => {handleDeleteCounterButton(index)}}
-    //       onAsyncIncrement={() => {handleAsyncIncrement(index)}}
-    //     />
-    //   );
-    // });
 
     const countersArr = Object.keys(countersList.counters); // Get counters key into a separate array object
     const counters = countersArr.map( (id) => {
