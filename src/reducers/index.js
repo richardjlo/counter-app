@@ -4,9 +4,16 @@ const initialState = {
 };
 
 export const counterReducer = (state = initialState, action) => {  
-  switch(action.type) {
+  const {
+    type,
+    status,
+    response,
+    id,
+  } = action;
+  
+  switch(type) {
     case 'CREATE_COUNTER': 
-      if(action.status === 'success') {
+      if(status === 'success') {
         return Object.assign(
           {},
           state,
@@ -14,7 +21,7 @@ export const counterReducer = (state = initialState, action) => {
             isFetching: false,
             counters: {
               ...state.counters,
-              ...action.response,
+              ...response,
             }
           }
         );
@@ -28,7 +35,7 @@ export const counterReducer = (state = initialState, action) => {
         );
       }
     case 'FETCH_COUNTERS':
-      if(action.status === 'success') {
+      if(status === 'success') {
         return Object.assign(
           {},
           state,
@@ -36,7 +43,7 @@ export const counterReducer = (state = initialState, action) => {
             isFetching: false,
             counters: {
               ...state.counters,
-              ...action.response,
+              ...response,
             }
           }
         );
@@ -50,9 +57,9 @@ export const counterReducer = (state = initialState, action) => {
         );
       }
     case 'DELETE_COUNTER':
-      if(action.status === 'success') {
+      if(status === 'success') {
         const counters = Object.assign({}, state.counters);   // Create new counters list
-        delete counters[action.id];                           // Delete counter from counters list
+        delete counters[id];                           // Delete counter from counters list
         return({
           ...state,
           isFetching: false,
@@ -65,15 +72,15 @@ export const counterReducer = (state = initialState, action) => {
         });
       }
     case 'INCREMENT': 
-    if(action.status === 'success') {
+    if(status === 'success') {
       return({
         ...state,
         isFetching: false,
         counters: {
           ...state.counters,
-          [action.id]: {
-            ...state.counters[action.id],
-            value: state.counters[action.id].value +1,
+          [id]: {
+            ...state.counters[id],
+            value: state.counters[id].value +1,
           }
         }
       });
@@ -84,15 +91,15 @@ export const counterReducer = (state = initialState, action) => {
       });
     }
     case 'DECREMENT':
-      if(action.status === 'success') {
+      if(status === 'success') {
         return({
           ...state,
           isFetching: false,
           counters: {
             ...state.counters,                            // Copy counters
-            [action.id]: {                                // Update specific counter
-              ...state.counters[action.id],               // copy counter properties
-              value: state.counters[action.id].value -1,  // Update value
+            [id]: {                                // Update specific counter
+              ...state.counters[id],               // copy counter properties
+              value: state.counters[id].value -1,  // Update value
             },
           }
         });
