@@ -81,10 +81,10 @@ export const counterReducer = (state = initialState, action) => {
           ...state,
           isFetching: false,
           counters: {
-            ...state.counters,
-            [action.id]: {
-              ...state.counters[action.id], // copy counter properties
-              value: state.counters[action.id].value -1, // Update value
+            ...state.counters,                            // Copy counters
+            [action.id]: {                                // Update specific counter
+              ...state.counters[action.id],               // copy counter properties
+              value: state.counters[action.id].value -1,  // Update value
             },
           }
         });
