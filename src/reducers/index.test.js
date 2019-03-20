@@ -304,13 +304,6 @@ describe('incrementSuccess action creator', () => {
 
   Object.freeze(oneCounter);
 
-  const incrementedCounter = {
-    b9mY8KQy2p4FIb7MJ5LP: {
-      created: 1552892019,
-      value: 1,
-    }
-  };
-
   const incrementedCounterState = {
     isFetching: false,
     counters: {
@@ -324,7 +317,7 @@ describe('incrementSuccess action creator', () => {
   Object.freeze(oneCounter);
 
   it('should increment counter', () => {
-    expect(counterReducer(oneCounter, incrementSuccess(incrementedCounter))).toEqual(incrementedCounterState)
+    expect(counterReducer(oneCounter, incrementSuccess('b9mY8KQy2p4FIb7MJ5LP'))).toEqual(incrementedCounterState)
   });
 
   const twoCounters = {
