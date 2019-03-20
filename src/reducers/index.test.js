@@ -401,7 +401,7 @@ describe('decrementSuccess action creator', () => {
   };
 
   const decrementedState = {
-    isFetching: true,
+    isFetching: false,
     counters: {
       b9mY8KQy2p4FIb7MJ5LP: {
         created: 1552892019,
