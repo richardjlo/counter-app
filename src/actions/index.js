@@ -222,8 +222,21 @@ export const decrement = (id) => {
   const decrementDispatchFunction = (dispatch) => {
     dispatch(decrementRequest());
 
-    
-    console.log("Decrementing counter # ", id);
+    countersRef.doc(id).get().then(function(doc) {
+      if (doc.exists) {
+          countersRef.doc(id).update({
+            value: doc.data().value - 1,
+          });
+      } else {
+          console.log("No such document!");
+      }
+    })
+    .then(function() {
+      dispatch(decrementSuccess(id));
+    })
+    .catch(function(error) {
+        console.log("Error getting document:", error);
+    });
   };
 
   return decrementDispatchFunction;
