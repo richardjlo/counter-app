@@ -85,8 +85,8 @@ export const counterReducer = (state = initialState, action) => {
             counters: {
               ...state.counters,
               [action.id]: {
-               created: 1552892019,
-               value: -1,
+                ...state.counters[action.id], // copy counter properties
+               value: state.counters[action.id].value -1, // Update value
               }
             }
           }
