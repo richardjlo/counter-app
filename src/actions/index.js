@@ -131,19 +131,22 @@ export const deleteCounter = (id) => {
     dispatch(deleteCounterRequest());
 
     // Delete counter from Firestore
-    countersRef.doc(id).delete()
-    .then(function() {
-      countersRef.get().then(function(querySnapshot) {
-        let counters = {};
-        querySnapshot.forEach(function(doc) {
-            counters = {
-              ...counters,
-              [doc.id]: doc.data(),
-            }
-        });
-        dispatch(deleteCounterSuccess(counters));
-      })
-    })    
+    countersRef.doc(id).delete().then(function() {
+      console.log('counter deleted!');
+      dispatch(deleteCounterSuccess(id));
+    })
+    // .then(function() {
+    //   countersRef.get().then(function(querySnapshot) {
+    //     let counters = {};
+    //     querySnapshot.forEach(function(doc) {
+    //         counters = {
+    //           ...counters,
+    //           [doc.id]: doc.data(),
+    //         }
+    //     });
+    //     dispatch(deleteCounterSuccess(counters));
+    //   })
+    // })    
     .catch(function(error) {
         console.error("Error removing document: ", error);
     });    
