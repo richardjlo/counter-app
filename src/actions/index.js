@@ -116,11 +116,11 @@ export const deleteCounterRequest = () => {
   });
 };
 
-export const deleteCounterSuccess = (response) => {
+export const deleteCounterSuccess = (id) => {
   return({
     type: DELETE_COUNTER,
     status:'success',
-    response: response,
+    id: id,
   });
 };
 
