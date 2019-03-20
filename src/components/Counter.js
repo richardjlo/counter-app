@@ -7,7 +7,7 @@ export const Counter = (props) => {
   const { 
     count, 
     onIncrement, 
-    // onDecrement, 
+    onDecrement, 
     onDelete, 
     // onAsyncIncrement 
   } = props;
@@ -18,9 +18,9 @@ export const Counter = (props) => {
         {' '}
         <button onClick={onIncrement}>+</button>
         {' '}
-        {/* <button onClick={onDecrement}>-</button>  
+        <button onClick={onDecrement}>-</button>  
         {' '}
-        <button onClick={onAsyncIncrement}>Async Increment</button>          
+        {/* <button onClick={onAsyncIncrement}>Async Increment</button>          
         {' '} */}
         <button onClick={onDelete}>Delete</button> 
       </p>
