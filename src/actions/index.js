@@ -171,15 +171,15 @@ export const increment = (id) => {
     dispatch(incrementRequest());
 
     countersRef.doc(id).get()
-      .then(function(doc) {
-        if (doc.exists) {
-            countersRef.doc(id).update({
-              value: doc.data().value + 1,
-            })
-        } else {
-            console.log("No such document!");
-        }
-      })
+    .then(function(doc) {
+      if (doc.exists) {
+          countersRef.doc(id).update({
+            value: doc.data().value + 1,
+          })
+      } else {
+          console.log("No such document!");
+      }
+    })
     .then(() => {
       dispatch(incrementSuccess(id));
     })
