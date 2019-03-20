@@ -123,7 +123,7 @@ export const deleteCounter = (id) => {
     dispatch(deleteCounterRequest());
 
     // Delete counter from Firestore
-    countersRef.doc(id).delete().then(function() {\
+    countersRef.doc(id).delete().then(function() {
       dispatch(deleteCounterSuccess(id));
     })
     .catch(function(error) {
