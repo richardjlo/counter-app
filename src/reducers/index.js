@@ -67,7 +67,13 @@ export const counterReducer = (state = initialState, action) => {
       return({
         ...state,
         isFetching: false,
-        counters: action.response,
+        counters: {
+          ...state.counters,
+          [action.id]: {
+            ...state.counters[action.id],
+            value: state.counters[action.id].value +1,
+          }
+        }
       });
     } else {
       return({
