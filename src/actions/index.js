@@ -21,7 +21,6 @@ export const CREATE_COUNTER = 'CREATE_COUNTER';
 export const FETCH_COUNTERS = 'FETCH_COUNTERS';
 
 export const createCounterRequest = () => {
-  console.log("Sending create counter request...")
   return({
     type: CREATE_COUNTER,
   });
@@ -55,12 +54,6 @@ export const createCounter = () => {
         [docRef.id]: newCounter,
       }))
     })
-
-    // All done. 
-    .then(function() {
-      console.log('Counter created!');
-    })
-
     .catch(function(error) {
       console.error("Error writing document: ", error);
     });    
@@ -126,27 +119,13 @@ export const deleteCounterSuccess = (id) => {
 
 export const deleteCounter = (id) => {
   const deleteCounterDispatchFunction = (dispatch) => {
-    // Dispatch deleteCounterRequest
-    console.log('Deleting counter: ', id);
+    // Dispatch deleteCounterRequest\
     dispatch(deleteCounterRequest());
 
     // Delete counter from Firestore
-    countersRef.doc(id).delete().then(function() {
-      console.log('counter deleted!');
+    countersRef.doc(id).delete().then(function() {\
       dispatch(deleteCounterSuccess(id));
     })
-    // .then(function() {
-    //   countersRef.get().then(function(querySnapshot) {
-    //     let counters = {};
-    //     querySnapshot.forEach(function(doc) {
-    //         counters = {
-    //           ...counters,
-    //           [doc.id]: doc.data(),
-    //         }
-    //     });
-    //     dispatch(deleteCounterSuccess(counters));
-    //   })
-    // })    
     .catch(function(error) {
         console.error("Error removing document: ", error);
     });    
