@@ -7,9 +7,13 @@ import { Provider } from 'react-redux';
 import { CounterAppContainer } from './containers/CounterAppContainer';
 import logger from 'redux-logger';
 
+const middleWare = [];
+middleWare.push(thunk);
+middleWare.push(logger);
+
 const store = createStore(
   counterReducer,
-  applyMiddleware(thunk, logger)
+  applyMiddleware(...middleWare)
 );
 
 const render = () => {
