@@ -31,7 +31,7 @@ export const createCounter = () => {
   const createCounterDispatchFunction = (dispatch) => {
     
     // Toggle isFetching flag ON.
-    dispatch(createCounterRequest()); 
+    dispatch(createCounterRequest());
 
     // Create new counter & add to Firestore
     const timestamp = firebase.firestore.Timestamp.now().seconds;
@@ -141,10 +141,10 @@ export const incrementSuccess = (id) => {
   });
 }
 
-export const increment = (id) => {  
+export const increment = (id) => {
   const incrementDispatchFunction = (dispatch) => {
-    dispatch(incrementRequest());
 
+    dispatch(incrementRequest());
     countersRef.doc(id).get()
     .then(function(doc) {
       if (doc.exists) {
