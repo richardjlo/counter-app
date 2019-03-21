@@ -311,7 +311,7 @@ describe('incrementSuccess action creator', () => {
   };
 
   it('should increment counter', () => {
-    expect(counterReducer(initialState, incrementSuccess('b9mY8KQy2p4FIb7MJ5LP'))).toEqual(incrementedCounterState)
+    expect(counterReducer(initialState, incrementSuccess(newCounter))).toEqual(incrementedCounterState)
   });
 
   // // Counter 2
