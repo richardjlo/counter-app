@@ -5,10 +5,11 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { CounterAppContainer } from './containers/CounterAppContainer';
+import logger from 'redux-logger';
 
 const store = createStore(
   counterReducer,
-  applyMiddleware(thunk)
+  applyMiddleware(thunk, logger)
 );
 
 const render = () => {
