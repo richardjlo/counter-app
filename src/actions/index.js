@@ -133,11 +133,11 @@ export const incrementRequest = () => {
   });
 };
 
-export const incrementSuccess = (id) => {
+export const incrementSuccess = (counter) => {
   return({
     type: INCREMENT,
     status: 'success',
-    id: id,
+    response: counter,
   });
 }
 
