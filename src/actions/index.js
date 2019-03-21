@@ -141,9 +141,9 @@ export const incrementSuccess = (counter) => {
   });
 }
 
-export const increment = (id) => {
+export const increment = (id) => {  
   const incrementDispatchFunction = (dispatch) => {
-
+    
     dispatch(incrementRequest());
     countersRef.doc(id).get()
     .then(function(doc) {
