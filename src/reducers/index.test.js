@@ -281,67 +281,69 @@ describe('incrementRequest action creator', () => {
 });
 
 describe('incrementSuccess action creator', () => {
-  // Counter 1
-  const b9mY8KQy2p4FIb7MJ5LP = {
-    created: 1552892019,
-    value: 0,
-  };
-
-  // Counter 2
-  const b9mY8KQy2p4FIb7MJ5LQ = {
-    created: 1552892020,
-    value: 1,
-  };
-
-  const oneCounter = {
+  const initialState = {
     isFetching: true,
     counters: {
-      b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,      
+      b9mY8KQy2p4FIb7MJ5LP: {
+        created: 1552892019,
+        value: 0,
+      },
     }
   };
 
-  Object.freeze(oneCounter);
+  Object.freeze(initialState);
 
+  const newCounter = {
+    b9mY8KQy2p4FIb7MJ5LP: {
+      created: 1552892019,
+      value: 1,
+    }    
+  };
+  
   const incrementedCounterState = {
     isFetching: false,
     counters: {
       b9mY8KQy2p4FIb7MJ5LP: {
         created: 1552892019,
         value: 1,
-      },      
+      },
     }
   };
 
-  Object.freeze(oneCounter);
-
   it('should increment counter', () => {
-    expect(counterReducer(oneCounter, incrementSuccess('b9mY8KQy2p4FIb7MJ5LP'))).toEqual(incrementedCounterState)
+    expect(counterReducer(initialState, incrementSuccess('b9mY8KQy2p4FIb7MJ5LP'))).toEqual(incrementedCounterState)
   });
 
-  const twoCounters = {
-    isFetching: false,
-    counters: {
-      b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
-      b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
-    },    
-  };
+  // // Counter 2
+  // const b9mY8KQy2p4FIb7MJ5LQ = {
+  //   created: 1552892020,
+  //   value: 1,
+  // };
 
-  Object.freeze(twoCounters);
+  // const twoCounters = {
+  //   isFetching: false,
+  //   counters: {
+  //     b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
+  //     b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
+  //   },    
+  // };
 
-  const incrementedCounterState2 = {
-    isFetching: false,
-    counters: {
-      b9mY8KQy2p4FIb7MJ5LP: {
-        created: 1552892019,
-        value: 1,
-      },
-      b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
-    },
-  }
+  // Object.freeze(twoCounters);
 
-  it('should increment 1 of 2 counters', () => {
-    expect(counterReducer(twoCounters, incrementSuccess('b9mY8KQy2p4FIb7MJ5LP'))).toEqual(incrementedCounterState2)
-  });
+  // const incrementedCounterState2 = {
+  //   isFetching: false,
+  //   counters: {
+  //     b9mY8KQy2p4FIb7MJ5LP: {
+  //       created: 1552892019,
+  //       value: 1,
+  //     },
+  //     b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
+  //   },
+  // }
+
+  // it('should increment 1 of 2 counters', () => {
+  //   expect(counterReducer(twoCounters, incrementSuccess('b9mY8KQy2p4FIb7MJ5LP'))).toEqual(incrementedCounterState2)
+  // });
 });
 
 describe('decrementRequest action creator', () => {
