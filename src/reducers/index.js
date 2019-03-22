@@ -22,6 +22,15 @@ export const counterReducer = (state = initialState, action) => {
             ...response,
           }
         });
+      } else if(status === 'error') {
+        return({
+          ...state,
+          isFetching:false,
+          error: {
+            code: "INVALID CREATE COUNTER ACTION",
+            message: "Oops something went wrong with creating a counter",
+          },
+        });
       } else {
         return({
           ...state,
