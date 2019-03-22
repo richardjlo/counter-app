@@ -142,11 +142,16 @@ export const incrementSuccess = (counter) => {
   });
 }
 
-const incrementCounterFS = async (id) => {
+const updateCounterFS = async (id, type) => {
   const doc = await countersRef.doc(id).get();
-  if (doc.exists) {
-    const newValue = doc.data().value + 1;
-
+  if(doc.exists) {
+    let newValue;
+    if(type === 'INCREMENT') {
+      newValue = doc.data().value + 1;
+    } else if(type === 'DECREMENT') {
+      newValue = doc.data().value - 1;
+    }
+    
     const update = countersRef.doc(id).update({
       value: newValue,
     });
@@ -156,20 +161,23 @@ const incrementCounterFS = async (id) => {
         ...doc.data(),
         value: newValue,
       }
-    };
+    }    
+
     const result = await Promise.all([update, counter]);
-    return result[1]; // Return counter
-  }
-  else {
-    console.log("No such document!");
-  }
+    console.log(result[1])
+    return result[1];
+
+  } else {
+    console.log("No such document");
+  };
 };
 
 export const increment = (id) => {
   const incrementDispatchFunction = (dispatch) => {
     dispatch(incrementRequest());
 
-    incrementCounterFS(id).then( (counter) => {
+    const INCREMENT = 'INCREMENT';
+    updateCounterFS(id, INCREMENT).then( (counter) => {
       dispatch(incrementSuccess(counter));
     })
   }
@@ -193,36 +201,12 @@ export const decrementSuccess = (counter) => {
   });
 };
 
-const decrementCounterFS = async (id) => {
-  const doc = await countersRef.doc(id).get();
-  if(doc.exists) {
-    const newValue = doc.data().value - 1;
-
-    const update = countersRef.doc(id).update({
-      value: newValue,
-    });
-
-    const counter = {
-      [id]: {
-        ...doc.data(),
-        value: newValue,
-      }
-    }    
-
-    const result = await Promise.all([update, counter]);
-    console.log(result[1])
-    return result[1];
-
-  } else {
-    console.log("No such document");
-  };
-};
-
 export const decrement = (id) => {
   const decrementDispatchFunction = (dispatch) => {
     dispatch(decrementRequest());
 
-    decrementCounterFS(id).then((counter) => {
+    const DECREMENT = 'DECREMENT';
+    updateCounterFS(id, DECREMENT).then((counter) => {
       dispatch(decrementSuccess(counter));
     })
     .catch(function(error) {
