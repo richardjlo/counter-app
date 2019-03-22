@@ -92,35 +92,18 @@ export const fetchCounters = () => {
     dispatch(fetchCountersRequest());
 
     countersRef.orderBy('created').onSnapshot(function(querySnapshot) {
-        let counters = {};
-        querySnapshot.forEach(function(doc) {
-          counters = {
-            ...counters,
-            [doc.id]: doc.data(),
-          }
-        });
-        console.log(counters);
-        dispatch(fetchCountersSuccess(counters));
+      let counters = {};
+      querySnapshot.forEach(function(doc) {
+        counters = {
+          ...counters,
+          [doc.id]: doc.data(),
+        }
+      });
+      dispatch(fetchCountersSuccess(counters));
+    }, function(error) {
+      console.error("Error fetching counters: ", error);
+      dispatch(fetchCountersFailure());
     });
-
-    // // Read data from Firestore
-    // countersRef.orderBy('created').get().then(function(querySnapshot) {
-    //   let counters = {};
-    //   querySnapshot.forEach(function(doc) {
-    //       counters = {
-    //         ...counters,
-    //         [doc.id]: doc.data(),
-    //       }
-    //   });      
-    //   return counters;
-    // })
-    // .then((counters) => {
-    //   dispatch(fetchCountersSuccess(counters));
-    // })
-    // .catch(function(error) {
-    //   console.log("Error getting documents: ", error);
-    //   dispatch(fetchCountersFailure());
-    // });
   };
 
   return fetchCountersDispatchFunction;
