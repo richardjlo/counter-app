@@ -75,16 +75,17 @@ export const fetchCounters = () => {
     dispatch(fetchCountersRequest());
 
     // Read data from Firestore
-    countersRef.get()
-    .then(function(querySnapshot) {
+    countersRef.get().then(function(querySnapshot) {
       let counters = {};
       querySnapshot.forEach(function(doc) {
           counters = {
             ...counters,
             [doc.id]: doc.data(),
           }
-      });
-      // Then dispatch (fetchCountersSuccess)
+      });      
+      return counters;
+    })
+    .then((counters) => {
       dispatch(fetchCountersSuccess(counters));
     })
     .catch(function(error) {
