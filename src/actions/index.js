@@ -148,9 +148,14 @@ export const increment = (id) => {
 
     countersRef.doc(id).get().then(function(doc) {
       if (doc.exists) {
+          // TODO: Rework using Promise.all. 
+          // Put two promises into array (update, createCounter)
+          // Complete when both promises are resolved.
           return countersRef.doc(id).update({
             value: doc.data().value + 1,
           })
+
+          // Need to rework this because needed to return counter AFTER update() is done AND have access to doc.data.
           .then(() => {
             const counter = {
               [id]: {
