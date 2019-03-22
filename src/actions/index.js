@@ -203,7 +203,7 @@ const updateCounterFS = async (id, type) => {
     return result[1];
 
   } else {
-    console.log("No such document");
+    console.log("No such document");    
   };
 };
 
@@ -215,6 +215,9 @@ export const increment = (id) => {
     updateCounterFS(id, INCREMENT).then( (counter) => {
       dispatch(incrementSuccess(counter));
     })
+    .catch( (error) => {
+      dispatch(incrementFailure());
+    });
   }
 
   return incrementDispatchFunction;
