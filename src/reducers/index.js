@@ -58,8 +58,10 @@ export const counterReducer = (state = initialState, action) => {
       }
     case 'DELETE_COUNTER':
       if(status === 'success') {
-        const counters = Object.assign({}, state.counters);   // Create new counters list
-        delete counters[id];                           // Delete counter from counters list
+        const counters = {                // Create new counters list
+          ...state.counters,
+        }
+        delete counters[id];              // Delete counter from counters list
         return({
           ...state,
           isFetching: false,
