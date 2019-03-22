@@ -216,6 +216,7 @@ export const increment = (id) => {
       dispatch(incrementSuccess(counter));
     })
     .catch( (error) => {
+      console.log("Error getting document:", error);
       dispatch(incrementFailure());
     });
   }
@@ -257,6 +258,7 @@ export const decrement = (id) => {
     })
     .catch(function(error) {
         console.log("Error getting document:", error);
+        dispatch(decrementFailure());
     });
   };
 

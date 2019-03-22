@@ -13,7 +13,8 @@ import {
   createCounterFailure, 
   fetchCountersFailure, 
   deleteCounterFailure, 
-  incrementFailure
+  incrementFailure, 
+  decrementFailure
 } from '../actions/index';
 
 describe('Counter Reducer', () => {
@@ -540,5 +541,27 @@ describe('decrementSuccess action creator', () => {
   it('should increment 1 of 2 counters', () => {
     expect(counterReducer(initialState2, incrementSuccess(newCounter2))).toEqual(decrementedCounterState2)
   });
+});
+
+describe('decrementFailure action creator', () => {
+  const initialState = {
+    isFetching: true,
+    counters: {},
+  };
+
+  Object.freeze(initialState);
+
+  const errorState = {
+    isFetching: false,
+    counters: {},
+    error: {
+      code: "INVALID DECREMENT ACTION",
+      message: "Oops something went wrong",
+    }
+  }
+
+  it('should return error', () => {
+    expect(counterReducer(initialState, decrementFailure())).toEqual(errorState);
+  })
 });
 
