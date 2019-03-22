@@ -11,7 +11,8 @@ import {
   decrementRequest, 
   decrementSuccess, 
   createCounterFailure, 
-  fetchCountersFailure
+  fetchCountersFailure, 
+  deleteCounterFailure
 } from '../actions/index';
 
 describe('Counter Reducer', () => {
@@ -306,6 +307,28 @@ describe('deleteCounterSuccess action creator', () => {
     expect( counterReducer(threeCounters, deleteCounterSuccess('b9mY8KQy2p4FIb7MJ5LP')))
       .toEqual(twoCounters);
   });
+});
+
+describe('deleteCounterFailure action creator', () => {
+  const initialState = {
+    isFetching: true,
+    counters: {},
+  };
+
+  Object.freeze(initialState);
+
+  const errorState = {
+    isFetching: false,
+    counters: {},
+    error: {
+      code: "INVALID DELETE COUNTER ACTION",
+      message: "Oops something went wrong",
+    }
+  }
+
+  it('should return error', () => {
+    expect(counterReducer(initialState, deleteCounterFailure())).toEqual(errorState);
+  })
 });
 
 describe('incrementRequest action creator', () => {
