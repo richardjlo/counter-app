@@ -375,6 +375,40 @@ describe('decrementRequest action creator', () => {
 });
 
 describe('decrementSuccess action creator', () => {
+  const initialState = {
+    isFetching: true,
+    counters: {
+      b9mY8KQy2p4FIb7MJ5LP: {
+        created: 1552892019,
+        value: 0,
+      },
+    }
+  };
+
+  Object.freeze(initialState);
+
+  const newCounter = {
+    b9mY8KQy2p4FIb7MJ5LP: {
+      created: 1552892019,
+      value: -1,
+    }    
+  };
+  
+  const decrementedCounterState = {
+    isFetching: false,
+    counters: {
+      b9mY8KQy2p4FIb7MJ5LP: {
+        created: 1552892019,
+        value: -1,
+      },
+    }
+  };
+
+  it('should decrement counter', () => {
+    expect(counterReducer(initialState, decrementSuccess(newCounter))).toEqual(decrementedCounterState)
+  });  
+  
+  /*
   // Counter 1
   const b9mY8KQy2p4FIb7MJ5LP = {
     created: 1552892019,
@@ -443,5 +477,6 @@ describe('decrementSuccess action creator', () => {
   it('should decrement counter', () => {
     expect( counterReducer(decrementedState1, decrementSuccess('b9mY8KQy2p4FIb7MJ5LP'))).toEqual(decrementedState1a);
   });
+  */
 });
 
