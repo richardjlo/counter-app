@@ -145,13 +145,16 @@ export const incrementSuccess = (counter) => {
 const incrementCounterFS = async (id) => {
   const doc = await countersRef.doc(id).get();
   if (doc.exists) {
+    const newValue = doc.data().value + 1;
+
     const update = countersRef.doc(id).update({
-      value: doc.data().value + 1,
+      value: newValue,
     });
+
     const counter = {
       [id]: {
         ...doc.data(),
-        value: doc.data().value + 1,
+        value: newValue,
       }
     };
     const result = await Promise.all([update, counter]);
@@ -193,14 +196,16 @@ export const decrementSuccess = (counter) => {
 const decrementCounterFS = async (id) => {
   const doc = await countersRef.doc(id).get();
   if(doc.exists) {
+    const newValue = doc.data().value - 1;
+
     const update = countersRef.doc(id).update({
-      value: doc.data().value - 1,
+      value: newValue,
     });
 
     const counter = {
       [id]: {
         ...doc.data(),
-        value: doc.data().value - 1,
+        value: newValue,
       }
     }    
 
