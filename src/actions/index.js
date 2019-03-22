@@ -239,6 +239,14 @@ export const decrementSuccess = (counter) => {
   });
 };
 
+export const decrementFailure = () => {
+  return({
+    type: DECREMENT,
+    status: 'error',
+    error: 'Oops something went wrong',
+  });
+};
+
 export const decrement = (id) => {
   const decrementDispatchFunction = (dispatch) => {
     dispatch(decrementRequest());
