@@ -142,41 +142,36 @@ export const incrementSuccess = (counter) => {
   });
 }
 
-export const increment = (id) => {  
+export const increment = (id) => {
   const incrementDispatchFunction = (dispatch) => {
     dispatch(incrementRequest());
-
-    countersRef.doc(id).get().then(function(doc) {
-      if (doc.exists) {
-          // TODO: Rework using Promise.all. 
-          // Put two promises into array (update, createCounter)
-          // Complete when both promises are resolved.
-          return countersRef.doc(id).update({
+    countersRef.doc(id).get()
+      .then( (doc) => {
+        if(doc.exists) {
+          const update = countersRef.doc(id).update({
             value: doc.data().value + 1,
-          })
-
-          // Need to rework this because needed to return counter AFTER update() is done AND have access to doc.data.
-          .then(() => {
-            const counter = {
-              [id]: {
-                ...doc.data(),
-                value: doc.data().value + 1,
-              }
-            };
-            return counter;
           });
-      } else {
+
+          const counter = {
+            [id]: {
+              ...doc.data(),
+              value: doc.data().value + 1,
+            }
+          };
+          
+          Promise.all([update, counter])
+            .then((result) => {
+              const counter = result[1];
+              dispatch(incrementSuccess(counter));
+            })
+        } else {
           console.log("No such document!");
-      }
-    })
-    .then((counter) => {
-      console.log(counter);
-      dispatch(incrementSuccess(counter));      
-    });
-  };
+        }
+      })
+  }
 
   return incrementDispatchFunction;
-}
+};
 
 const DECREMENT = 'DECREMENT';
 
