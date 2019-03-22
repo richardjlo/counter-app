@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "counter-app-d343f"
+    "default": "counter-app-d343f",
+    "production": "counter-app-d343f"
   }
 }
