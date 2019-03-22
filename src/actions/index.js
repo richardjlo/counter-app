@@ -159,14 +159,17 @@ export const increment = (id) => {
             }
           };
           
-          Promise.all([update, counter])
+          return Promise.all([update, counter])
             .then((result) => {
               const counter = result[1];
-              dispatch(incrementSuccess(counter));
+              return counter;              
             })
         } else {
           console.log("No such document!");
         }
+      })
+      .then( (counter) => {
+        dispatch(incrementSuccess(counter));
       })
   }
 
