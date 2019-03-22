@@ -72,7 +72,16 @@ export const counterReducer = (state = initialState, action) => {
           isFetching: false,
           counters: counters,
         });
-      } else {
+      } else if(status === 'error') {
+          return({
+            ...state,
+            isFetching:false,
+            error: {
+              code: "INVALID DELETE COUNTER ACTION",
+              message: "Oops something went wrong",
+            },
+          });
+        } else {
         return({
           ...state,
           isFetching: true,        
