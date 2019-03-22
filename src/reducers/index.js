@@ -36,25 +36,18 @@ export const counterReducer = (state = initialState, action) => {
       }
     case 'FETCH_COUNTERS':
       if(status === 'success') {
-        return {
+        return({
           ...state,
           isFetching: false,
           counters: {
             ...response,
           }
-        };
+        });
       } else {
         return({
           ...state,
           isFetching: true,  
         });
-        // return Object.assign(
-        //   {},
-        //   state,
-        //   {
-        //     isFetching: true,
-        //   }
-        // );
       }
     case 'DELETE_COUNTER':
       if(status === 'success') {
