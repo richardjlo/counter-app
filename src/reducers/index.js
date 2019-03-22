@@ -14,17 +14,14 @@ export const counterReducer = (state = initialState, action) => {
   switch(type) {
     case 'CREATE_COUNTER': 
       if(status === 'success') {
-        return Object.assign(
-          {},
-          state,
-          {
-            isFetching: false,
-            counters: {
-              ...state.counters,
-              ...response,
-            }
+        return({
+          ...state,
+          isFetching: false,
+          counters: {
+            ...state.counters,
+            ...response,
           }
-        );
+        });
       } else {
         return Object.assign(
           {},
