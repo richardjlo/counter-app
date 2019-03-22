@@ -57,7 +57,7 @@ export const createCounter = () => {
     })
     .catch(function(error) {
       console.error("Error writing document: ", error);
-      dispatch(createCounterFailure);
+      dispatch(createCounterFailure());
     });    
   }
 
@@ -107,6 +107,7 @@ export const fetchCounters = () => {
     })
     .catch(function(error) {
       console.log("Error getting documents: ", error);
+      dispatch(fetchCountersFailure());
     });
   };
 
@@ -147,6 +148,7 @@ export const deleteCounter = (id) => {
     })
     .catch(function(error) {
         console.error("Error removing document: ", error);
+        dispatch(deleteCounterFailure());
     });    
   }
   return deleteCounterDispatchFunction;
