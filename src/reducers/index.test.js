@@ -12,7 +12,8 @@ import {
   decrementSuccess, 
   createCounterFailure, 
   fetchCountersFailure, 
-  deleteCounterFailure
+  deleteCounterFailure, 
+  incrementFailure
 } from '../actions/index';
 
 describe('Counter Reducer', () => {
@@ -423,6 +424,28 @@ describe('incrementSuccess action creator', () => {
   it('should increment 1 of 2 counters', () => {
     expect(counterReducer(initialState2, incrementSuccess(newCounter2))).toEqual(incrementedCounterState2)
   });
+});
+
+describe('incrementFailure action creator', () => {
+  const initialState = {
+    isFetching: true,
+    counters: {},
+  };
+
+  Object.freeze(initialState);
+
+  const errorState = {
+    isFetching: false,
+    counters: {},
+    error: {
+      code: "INVALID INCREMENT ACTION",
+      message: "Oops something went wrong",
+    }
+  }
+
+  it('should return error', () => {
+    expect(counterReducer(initialState, incrementFailure())).toEqual(errorState);
+  })
 });
 
 describe('decrementRequest action creator', () => {
