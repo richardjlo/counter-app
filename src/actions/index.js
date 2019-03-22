@@ -92,7 +92,7 @@ export const fetchCounters = () => {
     dispatch(fetchCountersRequest());
 
     // Read data from Firestore
-    countersRef.get().then(function(querySnapshot) {
+    countersRef.orderBy('created').get().then(function(querySnapshot) {
       let counters = {};
       querySnapshot.forEach(function(doc) {
           counters = {
