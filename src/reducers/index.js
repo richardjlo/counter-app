@@ -44,13 +44,17 @@ export const counterReducer = (state = initialState, action) => {
           }
         };
       } else {
-        return Object.assign(
-          {},
-          state,
-          {
-            isFetching: true,
-          }
-        );
+        return({
+          ...state,
+          isFetching: true,  
+        });
+        // return Object.assign(
+        //   {},
+        //   state,
+        //   {
+        //     isFetching: true,
+        //   }
+        // );
       }
     case 'DELETE_COUNTER':
       if(status === 'success') {
