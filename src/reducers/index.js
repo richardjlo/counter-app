@@ -97,6 +97,15 @@ export const counterReducer = (state = initialState, action) => {
           ...response,
         }
       });
+    } else if(status === 'error') {
+      return({
+        ...state,
+        isFetching:false,
+        error: {
+          code: "INVALID INCREMENT ACTION",
+          message: "Oops something went wrong",
+        },
+      });
     } else {
       return({
         ...state,
