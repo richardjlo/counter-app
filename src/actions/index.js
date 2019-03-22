@@ -161,8 +161,7 @@ export const increment = (id) => {
           
           return Promise.all([update, counter])
             .then((result) => {
-              const counter = result[1];
-              return counter;              
+              return result[1]; // Return counter
             })
         } else {
           console.log("No such document!");
