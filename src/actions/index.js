@@ -167,6 +167,14 @@ export const incrementSuccess = (counter) => {
   });
 }
 
+export const incrementFailure = () => {
+  return({
+    type: INCREMENT,
+    status: 'error',
+    error: 'Oops something went wrong',
+  });
+};
+
 const updateCounterFS = async (id, type) => {
   const doc = await countersRef.doc(id).get();
   if(doc.exists) {
