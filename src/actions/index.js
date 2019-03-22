@@ -146,7 +146,7 @@ export const increment = (id) => {
   const incrementDispatchFunction = (dispatch) => {
     dispatch(incrementRequest());
     countersRef.doc(id).get()
-      .then( (doc) => {
+      .then( async (doc) => {
         if(doc.exists) {
           const update = countersRef.doc(id).update({
             value: doc.data().value + 1,
@@ -159,10 +159,8 @@ export const increment = (id) => {
             }
           };
           
-          return Promise.all([update, counter])
-            .then((result) => {
-              return result[1]; // Return counter
-            })
+          const result = await Promise.all([update, counter]);
+          return result[1]; // Return counter
         } else {
           console.log("No such document!");
         }
