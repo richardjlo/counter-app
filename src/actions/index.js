@@ -27,6 +27,14 @@ export const createCounterSuccess = (response) => {
   });
 };
 
+export const createCounterFailure = () => {
+  return({
+    type: CREATE_COUNTER,
+    status: 'error',
+    error: 'Oops something went wrong',
+  });
+};
+
 export const createCounter = () => {
   const createCounterDispatchFunction = (dispatch) => {
     
