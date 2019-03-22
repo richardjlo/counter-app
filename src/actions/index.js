@@ -78,6 +78,14 @@ export const fetchCountersSuccess = (response) => {
   });
 };
 
+export const fetchCountersFailure = () => {
+  return({
+    type: FETCH_COUNTERS,
+    status: 'error',
+    error: 'Oops something went wrong',
+  });
+};
+
 export const fetchCounters = () => {
   const fetchCountersDispatchFunction = (dispatch) => {
     // Toggle isFetching flag on (fetchCountersRequest)
