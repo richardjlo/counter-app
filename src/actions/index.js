@@ -128,6 +128,14 @@ export const deleteCounterSuccess = (id) => {
   });
 };
 
+export const deleteCounterFailure = () => {
+  return({
+    type: DELETE_COUNTER,
+    status: 'error',
+    error: 'Oops something went wrong',
+  });
+};
+
 export const deleteCounter = (id) => {
   const deleteCounterDispatchFunction = (dispatch) => {
     // Dispatch deleteCounterRequest\
