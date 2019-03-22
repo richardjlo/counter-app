@@ -142,32 +142,33 @@ export const incrementSuccess = (counter) => {
   });
 }
 
+const incrementCounterFS = async (id) => {
+  const doc = await countersRef.doc(id).get();
+  if (doc.exists) {
+    const update = countersRef.doc(id).update({
+      value: doc.data().value + 1,
+    });
+    const counter = {
+      [id]: {
+        ...doc.data(),
+        value: doc.data().value + 1,
+      }
+    };
+    const result = await Promise.all([update, counter]);
+    return result[1]; // Return counter
+  }
+  else {
+    console.log("No such document!");
+  }
+};
+
 export const increment = (id) => {
   const incrementDispatchFunction = (dispatch) => {
     dispatch(incrementRequest());
-    countersRef.doc(id).get()
-      .then( async (doc) => {
-        if(doc.exists) {
-          const update = countersRef.doc(id).update({
-            value: doc.data().value + 1,
-          });
 
-          const counter = {
-            [id]: {
-              ...doc.data(),
-              value: doc.data().value + 1,
-            }
-          };
-          
-          const result = await Promise.all([update, counter]);
-          return result[1]; // Return counter
-        } else {
-          console.log("No such document!");
-        }
-      })
-      .then( (counter) => {
-        dispatch(incrementSuccess(counter));
-      })
+    incrementCounterFS(id).then( (counter) => {
+      dispatch(incrementSuccess(counter));
+    })
   }
 
   return incrementDispatchFunction;
