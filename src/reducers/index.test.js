@@ -407,6 +407,47 @@ describe('decrementSuccess action creator', () => {
   it('should decrement counter', () => {
     expect(counterReducer(initialState, decrementSuccess(newCounter))).toEqual(decrementedCounterState)
   });  
+
+  const initialState2 = {
+    isFetching: false,
+    counters: {
+      b9mY8KQy2p4FIb7MJ5LP: {
+        created: 1552892019,
+        value: 0,
+      },
+      b9mY8KQy2p4FIb7MJ5LQ : {
+        created: 1552892020,
+        value: 0,
+      },
+    },    
+  };
+
+  Object.freeze(initialState2);
+
+  const newCounter2 = {
+    b9mY8KQy2p4FIb7MJ5LQ : {
+      created: 1552892020,
+      value: -1,
+    }    
+  };
+
+  const decrementedCounterState2 = {
+    isFetching: false,
+    counters: {
+      b9mY8KQy2p4FIb7MJ5LP: {
+        created: 1552892019,
+        value: 0,
+      },
+      b9mY8KQy2p4FIb7MJ5LQ : {
+        created: 1552892020,
+        value: -1,
+      },
+    },    
+  };
+
+  it('should increment 1 of 2 counters', () => {
+    expect(counterReducer(initialState2, incrementSuccess(newCounter2))).toEqual(decrementedCounterState2)
+  });
   
   /*
   // Counter 1
