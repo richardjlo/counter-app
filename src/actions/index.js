@@ -199,7 +199,6 @@ const updateCounterFS = async (id, type) => {
     }    
 
     const result = await Promise.all([update, counter]);
-    console.log(result[1])
     return result[1];
 
   } else {
