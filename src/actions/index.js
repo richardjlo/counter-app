@@ -145,31 +145,28 @@ export const incrementSuccess = (counter) => {
 export const increment = (id) => {  
   const incrementDispatchFunction = (dispatch) => {
     dispatch(incrementRequest());
+
     countersRef.doc(id).get().then(function(doc) {
       if (doc.exists) {
           return countersRef.doc(id).update({
             value: doc.data().value + 1,
           })
+          .then(() => {
+            const counter = {
+              [id]: {
+                ...doc.data(),
+                value: doc.data().value + 1,
+              }
+            };
+            return counter;
+          });
       } else {
           console.log("No such document!");
       }
     })
-    .then( () => {
-      countersRef.doc(id).get().then(function(doc) {
-        if (doc.exists) {
-          const counter = {
-            [id]: {
-              ...doc.data()   // spread object properties (created, value)
-            },
-          };
-          dispatch(incrementSuccess(counter));
-        } else {
-            console.log("No such document!");
-        }
-      })
-    })
-    .catch(function(error) {
-        console.log("Error getting document:", error);
+    .then((counter) => {
+      console.log(counter);
+      dispatch(incrementSuccess(counter));      
     });
   };
 
