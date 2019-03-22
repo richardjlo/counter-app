@@ -9,7 +9,8 @@ import {
   incrementRequest,
   incrementSuccess, 
   decrementRequest, 
-  decrementSuccess
+  decrementSuccess, 
+  createCounterFailure
 } from '../actions/index';
 
 describe('Counter Reducer', () => {
@@ -52,7 +53,7 @@ describe('createCounterRequest action creator', () => {
 
 describe('createCounterSuccess action creator', () => {
   const initialState = {
-    isFetching: false,
+    isFetching: true,
     counters: {},
   };
   
@@ -128,6 +129,28 @@ describe('createCounterSuccess action creator', () => {
   it('should add 1 counter to 2 counters.', () => {
     expect( counterReducer(twoCounters, createCounterSuccess(newCounter3))).toEqual(threeCounters);
   });
+});
+
+describe('createCounterFailure action creator', () => {
+  const initialState = {
+    isFetching: true,
+    counters: {},
+  };
+
+  Object.freeze(initialState);
+
+  const errorState = {
+    isFetching: false,
+    counters: {},
+    error: {
+      code: "INVALID CREATE COUNTER ACTION",
+      message: "Oops something went wrong with creating a counter",
+    }
+  }
+
+  it('should return error', () => {
+    expect(counterReducer(initialState, createCounterFailure())).toEqual(errorState);
+  })
 });
 
 describe('fetchCountersRequest action creator', () => {
