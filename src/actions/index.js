@@ -57,6 +57,7 @@ export const createCounter = () => {
     })
     .catch(function(error) {
       console.error("Error writing document: ", error);
+      dispatch(createCounterFailure);
     });    
   }
 
