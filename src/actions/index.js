@@ -190,23 +190,35 @@ export const decrementSuccess = (counter) => {
   });
 };
 
+const decrementCounterFS = async (id) => {
+  const doc = await countersRef.doc(id).get();
+  if(doc.exists) {
+    const update = countersRef.doc(id).update({
+      value: doc.data().value - 1,
+    });
 
+    const counter = {
+      [id]: {
+        ...doc.data(),
+        value: doc.data().value - 1,
+      }
+    }    
+
+    const result = await Promise.all([update, counter]);
+    console.log(result[1])
+    return result[1];
+
+  } else {
+    console.log("No such document");
+  };
+};
 
 export const decrement = (id) => {
   const decrementDispatchFunction = (dispatch) => {
     dispatch(decrementRequest());
 
-    countersRef.doc(id).get().then(function(doc) {
-      if (doc.exists) {
-          countersRef.doc(id).update({
-            value: doc.data().value - 1,
-          });
-      } else {
-          console.log("No such document!");
-      }
-    })
-    .then(function() {
-      dispatch(decrementSuccess(id));
+    decrementCounterFS(id).then((counter) => {
+      dispatch(decrementSuccess(counter));
     })
     .catch(function(error) {
         console.log("Error getting document:", error);
