@@ -182,11 +182,11 @@ export const decrementRequest = () => {
   });
 }
 
-export const decrementSuccess = (id) => {
+export const decrementSuccess = (counter) => {
   return({
     type: DECREMENT,
     status: 'success',
-    id: id,
+    response: counter,
   });
 };
 
