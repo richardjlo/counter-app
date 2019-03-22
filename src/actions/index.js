@@ -91,24 +91,36 @@ export const fetchCounters = () => {
     // Toggle isFetching flag on (fetchCountersRequest)
     dispatch(fetchCountersRequest());
 
-    // Read data from Firestore
-    countersRef.orderBy('created').get().then(function(querySnapshot) {
-      let counters = {};
-      querySnapshot.forEach(function(doc) {
+    countersRef.orderBy('created').onSnapshot(function(querySnapshot) {
+        let counters = {};
+        querySnapshot.forEach(function(doc) {
           counters = {
             ...counters,
             [doc.id]: doc.data(),
           }
-      });      
-      return counters;
-    })
-    .then((counters) => {
-      dispatch(fetchCountersSuccess(counters));
-    })
-    .catch(function(error) {
-      console.log("Error getting documents: ", error);
-      dispatch(fetchCountersFailure());
+        });
+        console.log(counters);
+        dispatch(fetchCountersSuccess(counters));
     });
+
+    // // Read data from Firestore
+    // countersRef.orderBy('created').get().then(function(querySnapshot) {
+    //   let counters = {};
+    //   querySnapshot.forEach(function(doc) {
+    //       counters = {
+    //         ...counters,
+    //         [doc.id]: doc.data(),
+    //       }
+    //   });      
+    //   return counters;
+    // })
+    // .then((counters) => {
+    //   dispatch(fetchCountersSuccess(counters));
+    // })
+    // .catch(function(error) {
+    //   console.log("Error getting documents: ", error);
+    //   dispatch(fetchCountersFailure());
+    // });
   };
 
   return fetchCountersDispatchFunction;
