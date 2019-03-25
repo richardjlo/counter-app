@@ -17,17 +17,15 @@ export class CounterApp extends React.Component {
       handleDecrement, 
       handleDeleteCounterButton,
     } = this.props;
-
-    const countersArr = Object.keys(countersList.counters); // Get counters key into a separate array object
-    const counters = countersArr.map( (id) => {
-      let counter = countersList.counters[id];
+    
+    const counters = countersList.counters.map((counter) => {
       return (      
         <Counter
-          key={id}
+          key={counter.id}
           count={counter.value}
-          onDelete={() => {handleDeleteCounterButton(id)}}          
-          onIncrement={() => {handleIncrement(id)}}    
-          onDecrement={() => {handleDecrement(id)}}                
+          onDelete={() => {handleDeleteCounterButton(counter.id)}}          
+          onIncrement={() => {handleIncrement(counter.id)}}    
+          onDecrement={() => {handleDecrement(counter.id)}}                
         />
       );
     });
