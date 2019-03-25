@@ -63,8 +63,7 @@ describe('createCounterSuccess action creator', () => {
   
   Object.freeze(initialState);
 
-  // Counter 1
-  const b9mY8KQy2p4FIb7MJ5LP = {
+  const counter1 = {
     created: 1552892019,
     value: 0,
     id: 'b9mY8KQy2p4FIb7MJ5LP',
@@ -73,19 +72,18 @@ describe('createCounterSuccess action creator', () => {
   const oneCounterState = {
     isFetching: false,
     counters: [
-      b9mY8KQy2p4FIb7MJ5LP,
+      counter1,
     ],
   };
 
   it('should add counter to empty counters list.', () => {
-    expect(counterReducer( initialState, createCounterSuccess(b9mY8KQy2p4FIb7MJ5LP)) )
+    expect(counterReducer( initialState, createCounterSuccess(counter1)) )
       .toEqual(oneCounterState);
   });
 
   Object.freeze(oneCounterState);
 
-    // Counter 2
-    const b9mY8KQy2p4FIb7MJ5LQ = {
+    const counter2 = {
       created: 1552892020,
       value: 1,
       id: 'b9mY8KQy2p4FIb7MJ5LQ',
@@ -94,19 +92,18 @@ describe('createCounterSuccess action creator', () => {
   const twoCountersState = {
     isFetching: false, 
     counters: [
-      b9mY8KQy2p4FIb7MJ5LP,
-      b9mY8KQy2p4FIb7MJ5LQ
+      counter1,
+      counter2,
     ],
   };
   
   it('should add counter from 1 counter to 2 counters', () => {
-    expect(counterReducer( oneCounterState, createCounterSuccess(b9mY8KQy2p4FIb7MJ5LQ)) ).toEqual(twoCountersState);
+    expect(counterReducer( oneCounterState, createCounterSuccess(counter2)) ).toEqual(twoCountersState);
   });
 
   Object.freeze(twoCountersState);
 
-  // Counter 3
-  const b9mY8KQy2p4FIb7MJ5LX = {
+  const counter3 = {
     created: 1552892021,
     value: 2,
     id: 'b9mY8KQy2p4FIb7MJ5LX'
@@ -115,14 +112,14 @@ describe('createCounterSuccess action creator', () => {
   const threeCountersState = {
     isFetching: false,
     counters: [
-      b9mY8KQy2p4FIb7MJ5LP,
-      b9mY8KQy2p4FIb7MJ5LQ,
-      b9mY8KQy2p4FIb7MJ5LX,
+      counter1,
+      counter2,
+      counter3,
     ],
   };
 
   it('should add 1 counter to 2 counters.', () => {
-    expect( counterReducer(twoCountersState, createCounterSuccess(b9mY8KQy2p4FIb7MJ5LX))).toEqual(threeCountersState);
+    expect( counterReducer(twoCountersState, createCounterSuccess(counter3))).toEqual(threeCountersState);
   });
 });
 
@@ -207,7 +204,7 @@ describe('fetchCountersSuccess action creator', () => {
     expect( counterReducer(initialState, fetchCountersSuccess(threeCountersState.counters)) ).toEqual(threeCountersState);
   });
 });
-/*
+
 describe('fetchCounterFailure action creator', () => {
   const initialState = {
     isFetching: true,
@@ -229,7 +226,7 @@ describe('fetchCounterFailure action creator', () => {
     expect(counterReducer(initialState, fetchCountersFailure())).toEqual(errorState);
   })
 });
-
+/*
 describe('deleteCounterRequest action creator', () => {
   const initialState = {
     isFetching: false,
