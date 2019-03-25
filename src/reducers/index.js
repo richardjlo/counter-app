@@ -98,15 +98,14 @@ export const counterReducer = (state = initialState, action) => {
       }
     case 'INCREMENT': 
     if(status === 'success') {
+      const index = getIndex(state.counters, response.id);
       return({
         ...state,
         isFetching: false,
         counters: [
-          {
-            created: 1552892019,
-            value: 1,
-            id: 'b9mY8KQy2p4FIb7MJ5LP',
-          },          
+          ...state.counters.slice(0, index),
+          response,
+          ...state.counters.slice(index+1),
         ]
       });
     } else if(status === 'error') {

@@ -415,11 +415,10 @@ describe('incrementSuccess action creator', () => {
   Object.freeze(initialState2);
 
   const counter2Incremented = {
-    b9mY8KQy2p4FIb7MJ5LQ : {
-      created: 1552892020,
-      value: 1,
-    }    
-  };
+    created: 1552892020,
+    value: 2,
+    id: 'b9mY8KQy2p4FIb7MJ5LQ',
+  };      
 
   const incrementedCounterState2 = {
     isFetching: false,
