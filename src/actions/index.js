@@ -60,7 +60,7 @@ const createCounterFS = async () => {
   }
 
   const result = await Promise.all([setCounterIdFS(), setCounterIdLocal()]);
-    return result[1];
+  return result[1];
 };
 
 export const createCounter = () => {
@@ -69,9 +69,7 @@ export const createCounter = () => {
     dispatch(createCounterRequest());
 
     createCounterFS().then((counter) => {
-      dispatch(createCounterSuccess({
-        [counter.id] : counter,
-      }))
+      dispatch(createCounterSuccess(counter));
     });
   };
   return createCounterDispatchFunction;
