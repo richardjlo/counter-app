@@ -35,31 +35,45 @@ export const createCounterFailure = () => {
   });
 };
 
+const createCounterFS = async () => {
+    const timestamp = firebase.firestore.Timestamp.now().seconds;
+    // Create new counter & add to Firestore
+    let counter = {
+      value: 0,
+      created: timestamp,
+    };
+
+  const newCounter = await countersRef.add(counter);
+  const counterId = newCounter.id;
+
+  // Set counter key to counter id
+  const setCounterIdFS = () => {
+    countersRef.doc(counterId).update({
+      id: counterId,
+    });
+  };
+
+  // Add counterId to local counter object
+  const setCounterIdLocal = () => {
+    counter.id = counterId;
+    return counter;
+  }
+
+  const result = await Promise.all([setCounterIdFS(), setCounterIdLocal()]);
+    return result[1];
+};
+
 export const createCounter = () => {
   const createCounterDispatchFunction = (dispatch) => {
-    
     // Toggle isFetching flag ON.
     dispatch(createCounterRequest());
 
-    // Create new counter & add to Firestore
-    const newCounter = {
-      value: 0,
-      created: firebase.firestore.Timestamp.now().seconds,
-    };
-    countersRef.add(newCounter)
-
-    // Dispatch createCounterSuccess action creator to update local store
-    .then((docRef) => {
+    createCounterFS().then((counter) => {
       dispatch(createCounterSuccess({
-        [docRef.id]: newCounter,
+        [counter.id] : counter,
       }))
-    })
-    .catch(function(error) {
-      console.error("Error writing document: ", error);
-      dispatch(createCounterFailure());
-    });    
-  }
-
+    });
+  };
   return createCounterDispatchFunction;
 };
 
