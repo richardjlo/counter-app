@@ -42,10 +42,9 @@ export const createCounter = () => {
     dispatch(createCounterRequest());
 
     // Create new counter & add to Firestore
-    const timestamp = firebase.firestore.Timestamp.now().seconds;
     const newCounter = {
       value: 0,
-      created: timestamp,
+      created: firebase.firestore.Timestamp.now().seconds,
     };
     countersRef.add(newCounter)
 
