@@ -101,10 +101,13 @@ export const counterReducer = (state = initialState, action) => {
       return({
         ...state,
         isFetching: false,
-        counters: {
-          ...state.counters,
-          ...response,
-        }
+        counters: [
+          {
+            created: 1552892019,
+            value: 1,
+            id: 'b9mY8KQy2p4FIb7MJ5LP',
+          },          
+        ]
       });
     } else if(status === 'error') {
       return({

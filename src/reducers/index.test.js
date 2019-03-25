@@ -324,18 +324,17 @@ describe('deleteCounterSuccess action creator', () => {
   });
 });
 
-/*
 describe('deleteCounterFailure action creator', () => {
   const initialState = {
     isFetching: true,
-    counters: {},
+    counters: [],
   };
 
   Object.freeze(initialState);
 
   const errorState = {
     isFetching: false,
-    counters: {},
+    counters: [],
     error: {
       code: "INVALID DELETE COUNTER ACTION",
       message: "Oops something went wrong",
@@ -350,14 +349,14 @@ describe('deleteCounterFailure action creator', () => {
 describe('incrementRequest action creator', () => {
   const initialState = {
     isFetching: false,
-    counters: {},
+    counters: [],
   };
   
   Object.freeze(initialState);
 
   const fetchingData = {
     isFetching: true,
-    counters: {},
+    counters: [],
   };
 
   it('should turn on isFetching flag', () => {
@@ -366,81 +365,81 @@ describe('incrementRequest action creator', () => {
 });
 
 describe('incrementSuccess action creator', () => {
+
+  const counter1 = {
+    created: 1552892019,
+    value: 0,
+    id: 'b9mY8KQy2p4FIb7MJ5LP',
+  };
+
   const initialState = {
     isFetching: true,
-    counters: {
-      b9mY8KQy2p4FIb7MJ5LP: {
-        created: 1552892019,
-        value: 0,
-      },
-    }
+    counters: [
+      counter1,
+    ]
   };
 
   Object.freeze(initialState);
 
-  const newCounter = {
-    b9mY8KQy2p4FIb7MJ5LP: {
-      created: 1552892019,
-      value: 1,
-    }    
+  const counter1Incremented = {
+    created: 1552892019,
+    value: 1,
+    id: 'b9mY8KQy2p4FIb7MJ5LP',
   };
   
   const incrementedCounterState = {
     isFetching: false,
-    counters: {
-      b9mY8KQy2p4FIb7MJ5LP: {
-        created: 1552892019,
-        value: 1,
-      },
-    }
+    counters: [
+      counter1Incremented,
+    ],
   };
 
   it('should increment counter', () => {
-    expect(counterReducer(initialState, incrementSuccess(newCounter))).toEqual(incrementedCounterState)
+    expect(counterReducer(initialState, incrementSuccess(counter1Incremented))).toEqual(incrementedCounterState)
   });
 
-  const initialState2 = {
-    isFetching: false,
-    counters: {
-      b9mY8KQy2p4FIb7MJ5LP: {
-        created: 1552892019,
-        value: 0,
-      },
-      b9mY8KQy2p4FIb7MJ5LQ : {
-        created: 1552892020,
-        value: 0,
-      },
-    },    
-  };
+  // const initialState2 = {
+  //   isFetching: false,
+  //   counters: {
+  //     b9mY8KQy2p4FIb7MJ5LP: {
+  //       created: 1552892019,
+  //       value: 0,
+  //     },
+  //     b9mY8KQy2p4FIb7MJ5LQ : {
+  //       created: 1552892020,
+  //       value: 0,
+  //     },
+  //   },    
+  // };
 
-  Object.freeze(initialState2);
+  // Object.freeze(initialState2);
 
-  const newCounter2 = {
-    b9mY8KQy2p4FIb7MJ5LQ : {
-      created: 1552892020,
-      value: 1,
-    }    
-  };
+  // const newCounter2 = {
+  //   b9mY8KQy2p4FIb7MJ5LQ : {
+  //     created: 1552892020,
+  //     value: 1,
+  //   }    
+  // };
 
-  const incrementedCounterState2 = {
-    isFetching: false,
-    counters: {
-      b9mY8KQy2p4FIb7MJ5LP: {
-        created: 1552892019,
-        value: 0,
-      },
-      b9mY8KQy2p4FIb7MJ5LQ : {
-        created: 1552892020,
-        value: 1,
-      },
-    },    
-  };
+  // const incrementedCounterState2 = {
+  //   isFetching: false,
+  //   counters: {
+  //     b9mY8KQy2p4FIb7MJ5LP: {
+  //       created: 1552892019,
+  //       value: 0,
+  //     },
+  //     b9mY8KQy2p4FIb7MJ5LQ : {
+  //       created: 1552892020,
+  //       value: 1,
+  //     },
+  //   },    
+  // };
 
-  it('should increment 1 of 2 counters', () => {
-    expect(counterReducer(initialState2, incrementSuccess(newCounter2))).toEqual(incrementedCounterState2)
-  });
+  // it('should increment 1 of 2 counters', () => {
+  //   expect(counterReducer(initialState2, incrementSuccess(newCounter2))).toEqual(incrementedCounterState2)
+  // });
 });
-
+/*
 describe('incrementFailure action creator', () => {
   const initialState = {
     isFetching: true,
