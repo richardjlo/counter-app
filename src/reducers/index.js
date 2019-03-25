@@ -125,13 +125,15 @@ export const counterReducer = (state = initialState, action) => {
     }
     case 'DECREMENT':
       if(status === 'success') {
+        const index = getIndex(state.counters, response.id);
         return({
           ...state,
           isFetching: false,
-          counters: {
-            ...state.counters,
-            ...response,
-          }
+          counters: [
+            ...state.counters.slice(0, index),
+            response,
+            ...state.counters.slice(index+1),
+          ]
         });
       } else if(status === 'error') {
         return({
