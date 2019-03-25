@@ -11,14 +11,14 @@ export class CounterApp extends React.Component {
   }
   render() {
     const { 
-      countersList, 
+      state, 
       handleAddCounterButton, 
       handleIncrement, 
       handleDecrement, 
       handleDeleteCounterButton,
     } = this.props;
     
-    const counters = countersList.counters.map((counter) => {
+    const counters = state.counters.map((counter) => {
       return (      
         <Counter
           key={counter.id}

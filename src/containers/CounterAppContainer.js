@@ -17,7 +17,7 @@ import { bindActionCreators } from "redux";
 
 function mapStateToProps(state) {
   return ({
-    countersList: state,
+    state: state,
   });
 }
 
