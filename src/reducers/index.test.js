@@ -111,7 +111,7 @@ describe('createCounterSuccess action creator', () => {
     value: 2,
     id: 'b9mY8KQy2p4FIb7MJ5LX'
   };
-  
+
   const threeCountersState = {
     isFetching: false,
     counters: [
@@ -125,18 +125,18 @@ describe('createCounterSuccess action creator', () => {
     expect( counterReducer(twoCountersState, createCounterSuccess(b9mY8KQy2p4FIb7MJ5LX))).toEqual(threeCountersState);
   });
 });
-/*
+
 describe('createCounterFailure action creator', () => {
   const initialState = {
     isFetching: true,
-    counters: {},
+    counters: [],
   };
 
   Object.freeze(initialState);
 
   const errorState = {
     isFetching: false,
-    counters: {},
+    counters: [],
     error: {
       code: "INVALID CREATE COUNTER ACTION",
       message: "Oops something went wrong",
@@ -151,14 +151,14 @@ describe('createCounterFailure action creator', () => {
 describe('fetchCountersRequest action creator', () => {
   const initialState = {
     isFetching: false,
-    counters: {},
+    counters: [],
   };
   
   Object.freeze(initialState);
 
   const fetchingData = {
     isFetching: true,
-    counters: {},
+    counters: [],
   };
 
   it('should turn on isFetching flag', () => {
@@ -169,36 +169,45 @@ describe('fetchCountersRequest action creator', () => {
 describe('fetchCountersSuccess action creator', () => {
   const initialState = {
     isFetching: false,
-    counters: {},
+    counters: [],
   };
 
   Object.freeze(initialState);
-  const counter1_id = 'b9mY8KQy2p4FIb7MJ5LP';
-  const counter2_id = 'uB3LUWoA8tsdxDzTq0Py';
-  const counter3_id = 'uB3LUWoA8tsdxDzTq3xm';  
-
-  const threeCounters = {
-    isFetching: false, 
-    counters: {
-      [counter1_id]: {
-        value: 0,
-      },
-      [counter2_id]: {
-        value: 0,
-      },
-      [counter3_id]: {
-        value: 0,
-      }
-    }
+  
+  const counter1 = {
+    created: 1552892019,
+    value: 0,
+    id: 'b9mY8KQy2p4FIb7MJ5LP',
+  };
+  
+  const counter2 = {
+    created: 1552892020,
+    value: 1,
+    id: 'b9mY8KQy2p4FIb7MJ5LQ',
+  };    
+  
+  const counter3 = {
+    created: 1552892021,
+    value: 2,
+    id: 'b9mY8KQy2p4FIb7MJ5LX'
   };
 
-  Object.freeze(threeCounters);
+  const threeCountersState = {
+    isFetching: false, 
+    counters: [
+      counter1,
+      counter2,
+      counter3,
+    ],
+  };
+
+  Object.freeze(threeCountersState);
   
   it('should update state with counters from db', () => {
-    expect( counterReducer(initialState, fetchCountersSuccess(threeCounters.counters)) ).toEqual(threeCounters);
+    expect( counterReducer(initialState, fetchCountersSuccess(threeCountersState.counters)) ).toEqual(threeCountersState);
   });
 });
-
+/*
 describe('fetchCounterFailure action creator', () => {
   const initialState = {
     isFetching: true,

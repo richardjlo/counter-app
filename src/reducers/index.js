@@ -42,9 +42,9 @@ export const counterReducer = (state = initialState, action) => {
         return({
           ...state,
           isFetching: false,
-          counters: {
+          counters: [
             ...response,
-          }
+          ]
         });
       } else if(status === 'error') {
         return({
