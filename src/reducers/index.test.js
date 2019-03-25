@@ -254,29 +254,6 @@ describe('deleteCounterSuccess action creator', () => {
     id: 'b9mY8KQy2p4FIb7MJ5LP',
   };
 
-  // const counter2 = {
-  //   created: 1552892020,
-  //   value: 1,
-  //   id: 'b9mY8KQy2p4FIb7MJ5LQ',
-  // };    
-
-  // const counter3 = {
-  //   created: 1552892021,
-  //   value: 2,
-  //   id: 'b9mY8KQy2p4FIb7MJ5LX'
-  // };
-
-  // const threeCountersState = {
-  //   isFetching: false,
-  //   counters: [
-  //     counter1,
-  //     counter2,
-  //     counter3,
-  //   ],
-  // };
-
-  // Object.freeze(threeCountersState);
-
   const oneCounterState = {
     isFetching: false,
     counters: [
@@ -295,19 +272,56 @@ describe('deleteCounterSuccess action creator', () => {
     expect( counterReducer(oneCounterState, deleteCounterSuccess(counter1.id))).toEqual(emptyCounters);
   });
 
-  // const twoCounters = {
-  //   isFetching: false,
-  //   counters: {
-  //     b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
-  //     b9mY8KQy2p4FIb7MJ5LX: b9mY8KQy2p4FIb7MJ5LX,
-  //   },    
-  // }
+  const counter2 = {
+    created: 1552892020,
+    value: 1,
+    id: 'b9mY8KQy2p4FIb7MJ5LQ',
+  };    
 
-  // // Deleting counter (b9mY8KQy2p4FIb7MJ5LP)
-  // it('should delete one single counter from a group of 3', () => {
-  //   expect( counterReducer(threeCounters, deleteCounterSuccess('b9mY8KQy2p4FIb7MJ5LP')))
-  //     .toEqual(twoCounters);
-  // });
+  const counter3 = {
+    created: 1552892021,
+    value: 2,
+    id: 'b9mY8KQy2p4FIb7MJ5LX'
+  };
+
+  const threeCountersState = {
+    isFetching: false,
+    counters: [
+      counter1,
+      counter2,
+      counter3,
+    ],
+  };
+
+  Object.freeze(threeCountersState);
+
+  const twoCountersMinusCounter1State = {
+    isFetching: false,
+    counters: [
+      counter2, 
+      counter3
+    ],
+  }
+
+  const twoCountersMinusCounter2State = {
+    isFetching: false,
+    counters: [
+      counter1,
+      counter3
+    ],
+  }
+
+  // Deleting counter (counter1)
+  it('should delete one single counter from a group of 3', () => {
+    expect( counterReducer(threeCountersState, deleteCounterSuccess(counter1.id)))
+      .toEqual(twoCountersMinusCounter1State);
+  });
+
+  // Deleting counter (counter2)
+  it('should delete one single counter from a group of 3', () => {
+    expect( counterReducer(threeCountersState, deleteCounterSuccess(counter2.id)))
+      .toEqual(twoCountersMinusCounter2State);
+  });
 });
 
 /*
