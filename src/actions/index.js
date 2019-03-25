@@ -105,12 +105,9 @@ export const fetchCounters = () => {
     dispatch(fetchCountersRequest());
 
     countersRef.orderBy('created').onSnapshot(function(querySnapshot) {
-      let counters = {};
+      let counters = [];
       querySnapshot.forEach(function(doc) {
-        counters = {
-          ...counters,
-          [doc.id]: doc.data(),
-        }
+        counters.push(doc.data());
       });
       dispatch(fetchCountersSuccess(counters));
     }, function(error) {
@@ -147,7 +144,7 @@ export const deleteCounterFailure = () => {
 
 export const deleteCounter = (id) => {
   const deleteCounterDispatchFunction = (dispatch) => {
-    // Dispatch deleteCounterRequest\
+    // Dispatch deleteCounterRequest
     dispatch(deleteCounterRequest());
 
     // Delete counter from Firestore
