@@ -3,6 +3,14 @@ const initialState = {
   counters: [],
 };
 
+
+const getIndex = (counters, id) => {
+  for(let i = 0; i < counters.length; i++) {
+    if (counters[i].id === id) {
+      return i;
+    }
+  };
+}
 export const counterReducer = (state = initialState, action) => {  
   const {
     type,
@@ -63,14 +71,15 @@ export const counterReducer = (state = initialState, action) => {
       }
     case 'DELETE_COUNTER':
       if(status === 'success') {
-        const counters = {                // Create new counters list
-          ...state.counters,
-        }
-        delete counters[id];              // Delete counter from counters list
+        const indexToDelete = getIndex(state.counters, id);
+
         return({
           ...state,
           isFetching: false,
-          counters: counters,
+          counters: [
+            ...state.counters.slice(0, indexToDelete),
+            ...state.counters.slice(indexToDelete + 1)
+          ],
         });
       } else if(status === 'error') {
           return({
