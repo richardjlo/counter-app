@@ -104,7 +104,7 @@ export const fetchCounters = () => {
     // Toggle isFetching flag on (fetchCountersRequest)
     dispatch(fetchCountersRequest());
 
-    countersRef.orderBy('created').onSnapshot(function(querySnapshot) {
+    countersRef.orderBy('created').get().then(function(querySnapshot) {
       let counters = [];
       querySnapshot.forEach(function(doc) {
         counters.push(doc.data());
@@ -114,6 +114,17 @@ export const fetchCounters = () => {
       console.error("Error fetching counters: ", error);
       dispatch(fetchCountersFailure());
     });
+
+    // countersRef.orderBy('created').onSnapshot(function(querySnapshot) {
+    //   let counters = [];
+    //   querySnapshot.forEach(function(doc) {
+    //     counters.push(doc.data());
+    //   });
+    //   dispatch(fetchCountersSuccess(counters));
+    // }, function(error) {
+    //   console.error("Error fetching counters: ", error);
+    //   dispatch(fetchCountersFailure());
+    // });
   };
 
   return fetchCountersDispatchFunction;
@@ -149,6 +160,7 @@ export const deleteCounter = (id) => {
 
     // Delete counter from Firestore
     countersRef.doc(id).delete().then(function() {
+      console.log('deleted counter');
       dispatch(deleteCounterSuccess(id));
     })
     .catch(function(error) {
@@ -197,10 +209,9 @@ const updateCounterFS = async (id, type) => {
     });
 
     const counter = {
-      [id]: {
         ...doc.data(),
         value: newValue,
-      }
+        id: id,
     }    
 
     const result = await Promise.all([update, counter]);
