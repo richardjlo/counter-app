@@ -49,7 +49,7 @@ export const createCounter = () => {
     countersRef.add(newCounter)
 
     // Dispatch createCounterSuccess action creator to update local store
-    .then(function(docRef) {            
+    .then((docRef) => {
       dispatch(createCounterSuccess({
         [docRef.id]: newCounter,
       }))
