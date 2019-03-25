@@ -1,6 +1,6 @@
 const initialState = {
   isFetching: false,
-  counters: {},
+  counters: [],
 };
 
 export const counterReducer = (state = initialState, action) => {  
