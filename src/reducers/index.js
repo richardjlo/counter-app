@@ -17,10 +17,10 @@ export const counterReducer = (state = initialState, action) => {
         return({
           ...state,
           isFetching: false,
-          counters: {
+          counters: [
             ...state.counters,
-            ...response,
-          }
+            response,
+          ]
         });
       } else if(status === 'error') {
         return({

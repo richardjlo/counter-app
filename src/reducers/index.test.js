@@ -30,25 +30,24 @@ describe('Counter Reducer', () => {
   it('should provide initial state.', () => {
     expect(counterReducer(undefined, {})).toEqual(initialState);
   })
-/*
+
   it('should return state if action is unknown', () => {
     expect(counterReducer(initialState, {})).toEqual(initialState);
   })
-  */
 
 });
-/*
+
 describe('createCounterRequest action creator', () => {
   const initialState = {
     isFetching: false,
-    counters: {},
+    counters: [],
   };
   
   Object.freeze(initialState);
 
   const fetchingNewCounter = {
     isFetching: true,
-    counters: {},
+    counters: [],
   };
 
   it('should turn on isFetching flag', () => {
@@ -59,7 +58,7 @@ describe('createCounterRequest action creator', () => {
 describe('createCounterSuccess action creator', () => {
   const initialState = {
     isFetching: true,
-    counters: {},
+    counters: [],
   };
   
   Object.freeze(initialState);
@@ -85,60 +84,56 @@ describe('createCounterSuccess action creator', () => {
     id: 'b9mY8KQy2p4FIb7MJ5LX'
   };
 
-  const newCounter = {
-    b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP
-  };
-
-  const oneCounter = {
+  const oneCounterState = {
     isFetching: false,
-    counters: {
-      b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,      
-    }
+    counters: [
+      b9mY8KQy2p4FIb7MJ5LP,
+    ],
   };
 
   it('should add counter to empty counters list.', () => {
-    expect(counterReducer( initialState, createCounterSuccess(newCounter)) )
-      .toEqual(oneCounter);
+    expect(counterReducer( initialState, createCounterSuccess(b9mY8KQy2p4FIb7MJ5LP)) )
+      .toEqual(oneCounterState);
   });
 
-  Object.freeze(oneCounter);
+  // Object.freeze(oneCounter);
 
-  const newCounter2 = {
-    b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
-  }
+  // const newCounter2 = {
+  //   b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
+  // }
 
-  const twoCounters = {
-    isFetching: false, 
-    counters: {
-      b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
-      b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
-    }     
-  };
+  // const twoCounters = {
+  //   isFetching: false, 
+  //   counters: {
+  //     b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
+  //     b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
+  //   }     
+  // };
   
-  it('should add counter from 1 counter to 2 counters', () => {
-    expect(counterReducer( oneCounter, createCounterSuccess(newCounter2)) ).toEqual(twoCounters);
-  });
+  // it('should add counter from 1 counter to 2 counters', () => {
+  //   expect(counterReducer( oneCounter, createCounterSuccess(newCounter2)) ).toEqual(twoCounters);
+  // });
 
-  Object.freeze(twoCounters);
+  // Object.freeze(twoCounters);
 
-  const newCounter3 = {
-    b9mY8KQy2p4FIb7MJ5LX: b9mY8KQy2p4FIb7MJ5LX,
-  }
+  // const newCounter3 = {
+  //   b9mY8KQy2p4FIb7MJ5LX: b9mY8KQy2p4FIb7MJ5LX,
+  // }
   
-  const threeCounters = {
-    isFetching: false,
-    counters: {
-      b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
-      b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
-      b9mY8KQy2p4FIb7MJ5LX: b9mY8KQy2p4FIb7MJ5LX,
-    }
-  };
+  // const threeCounters = {
+  //   isFetching: false,
+  //   counters: {
+  //     b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
+  //     b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
+  //     b9mY8KQy2p4FIb7MJ5LX: b9mY8KQy2p4FIb7MJ5LX,
+  //   }
+  // };
 
-  it('should add 1 counter to 2 counters.', () => {
-    expect( counterReducer(twoCounters, createCounterSuccess(newCounter3))).toEqual(threeCounters);
-  });
+  // it('should add 1 counter to 2 counters.', () => {
+  //   expect( counterReducer(twoCounters, createCounterSuccess(newCounter3))).toEqual(threeCounters);
+  // });
 });
-
+/*
 describe('createCounterFailure action creator', () => {
   const initialState = {
     isFetching: true,
