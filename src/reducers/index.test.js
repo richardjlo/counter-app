@@ -70,20 +70,6 @@ describe('createCounterSuccess action creator', () => {
     id: 'b9mY8KQy2p4FIb7MJ5LP',
   };
 
-  // Counter 2
-  const b9mY8KQy2p4FIb7MJ5LQ = {
-    created: 1552892020,
-    value: 1,
-    id: 'b9mY8KQy2p4FIb7MJ5LQ',
-  };
-
-  // Counter 3
-  const b9mY8KQy2p4FIb7MJ5LX = {
-    created: 1552892021,
-    value: 2,
-    id: 'b9mY8KQy2p4FIb7MJ5LX'
-  };
-
   const oneCounterState = {
     isFetching: false,
     counters: [
@@ -96,42 +82,48 @@ describe('createCounterSuccess action creator', () => {
       .toEqual(oneCounterState);
   });
 
-  // Object.freeze(oneCounter);
+  Object.freeze(oneCounterState);
 
-  // const newCounter2 = {
-  //   b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
-  // }
+    // Counter 2
+    const b9mY8KQy2p4FIb7MJ5LQ = {
+      created: 1552892020,
+      value: 1,
+      id: 'b9mY8KQy2p4FIb7MJ5LQ',
+    };    
 
-  // const twoCounters = {
-  //   isFetching: false, 
-  //   counters: {
-  //     b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
-  //     b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
-  //   }     
-  // };
+  const twoCountersState = {
+    isFetching: false, 
+    counters: [
+      b9mY8KQy2p4FIb7MJ5LP,
+      b9mY8KQy2p4FIb7MJ5LQ
+    ],
+  };
   
-  // it('should add counter from 1 counter to 2 counters', () => {
-  //   expect(counterReducer( oneCounter, createCounterSuccess(newCounter2)) ).toEqual(twoCounters);
-  // });
+  it('should add counter from 1 counter to 2 counters', () => {
+    expect(counterReducer( oneCounterState, createCounterSuccess(b9mY8KQy2p4FIb7MJ5LQ)) ).toEqual(twoCountersState);
+  });
 
-  // Object.freeze(twoCounters);
+  Object.freeze(twoCountersState);
 
-  // const newCounter3 = {
-  //   b9mY8KQy2p4FIb7MJ5LX: b9mY8KQy2p4FIb7MJ5LX,
-  // }
+  // Counter 3
+  const b9mY8KQy2p4FIb7MJ5LX = {
+    created: 1552892021,
+    value: 2,
+    id: 'b9mY8KQy2p4FIb7MJ5LX'
+  };
   
-  // const threeCounters = {
-  //   isFetching: false,
-  //   counters: {
-  //     b9mY8KQy2p4FIb7MJ5LP: b9mY8KQy2p4FIb7MJ5LP,
-  //     b9mY8KQy2p4FIb7MJ5LQ: b9mY8KQy2p4FIb7MJ5LQ,
-  //     b9mY8KQy2p4FIb7MJ5LX: b9mY8KQy2p4FIb7MJ5LX,
-  //   }
-  // };
+  const threeCountersState = {
+    isFetching: false,
+    counters: [
+      b9mY8KQy2p4FIb7MJ5LP,
+      b9mY8KQy2p4FIb7MJ5LQ,
+      b9mY8KQy2p4FIb7MJ5LX,
+    ],
+  };
 
-  // it('should add 1 counter to 2 counters.', () => {
-  //   expect( counterReducer(twoCounters, createCounterSuccess(newCounter3))).toEqual(threeCounters);
-  // });
+  it('should add 1 counter to 2 counters.', () => {
+    expect( counterReducer(twoCountersState, createCounterSuccess(b9mY8KQy2p4FIb7MJ5LX))).toEqual(threeCountersState);
+  });
 });
 /*
 describe('createCounterFailure action creator', () => {
