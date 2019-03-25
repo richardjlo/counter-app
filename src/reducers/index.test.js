@@ -505,59 +505,52 @@ describe('decrementSuccess action creator', () => {
     expect(counterReducer(initialState, decrementSuccess(decrementedCounter1))).toEqual(decrementedCounterState)
   });  
 
-  // const initialState2 = {
-  //   isFetching: false,
-  //   counters: {
-  //     b9mY8KQy2p4FIb7MJ5LP: {
-  //       created: 1552892019,
-  //       value: 0,
-  //     },
-  //     b9mY8KQy2p4FIb7MJ5LQ : {
-  //       created: 1552892020,
-  //       value: 0,
-  //     },
-  //   },    
-  // };
+  const counter2 = {
+    created: 1552892020,
+    value: 0,
+    id: 'b9mY8KQy2p4FIb7MJ5LQ',
+  };      
 
-  // Object.freeze(initialState2);
+  const initialState2 = {
+    isFetching: false,
+    counters: [
+      counter1,
+      counter2,
+    ],
+  };
 
-  // const newCounter2 = {
-  //   b9mY8KQy2p4FIb7MJ5LQ : {
-  //     created: 1552892020,
-  //     value: -1,
-  //   }    
-  // };
+  Object.freeze(initialState2);
 
-  // const decrementedCounterState2 = {
-  //   isFetching: false,
-  //   counters: {
-  //     b9mY8KQy2p4FIb7MJ5LP: {
-  //       created: 1552892019,
-  //       value: 0,
-  //     },
-  //     b9mY8KQy2p4FIb7MJ5LQ : {
-  //       created: 1552892020,
-  //       value: -1,
-  //     },
-  //   },    
-  // };
+  const decrementedCounter2 = {
+    created: 1552892020,
+    value: -1,
+    id: 'b9mY8KQy2p4FIb7MJ5LQ',
+  };      
 
-  // it('should increment 1 of 2 counters', () => {
-  //   expect(counterReducer(initialState2, incrementSuccess(newCounter2))).toEqual(decrementedCounterState2)
-  // });
+  const decrementedCounterState2 = {
+    isFetching: false,
+    counters: [
+      counter1,
+      decrementedCounter2,
+    ],
+  };
+
+  it('should increment 1 of 2 counters', () => {
+    expect(counterReducer(initialState2, incrementSuccess(decrementedCounter2))).toEqual(decrementedCounterState2)
+  });
 });
-/*
+
 describe('decrementFailure action creator', () => {
   const initialState = {
     isFetching: true,
-    counters: {},
+    counters: [],
   };
 
   Object.freeze(initialState);
 
   const errorState = {
     isFetching: false,
-    counters: {},
+    counters: [],
     error: {
       code: "INVALID DECREMENT ACTION",
       message: "Oops something went wrong",
@@ -568,6 +561,3 @@ describe('decrementFailure action creator', () => {
     expect(counterReducer(initialState, decrementFailure())).toEqual(errorState);
   })
 });
-
-
-*/
